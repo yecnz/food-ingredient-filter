@@ -2,13 +2,13 @@
 
 /* --- 기본 설정 --- */
 body {
-  margin: 0;
-  font-family: 'AppleSDGothicNeo-Regular', 'Noto Sans KR', sans-serif; /* macOS 및 한글 친화적 폰트 */
+  margin: 10;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(238, 234, 222); 
-  color: #333;
+  color: #5c5252;
   line-height: 1.6;
+  letter-spacing: 0.03em; 
 }
 
 .App {
@@ -30,26 +30,26 @@ h1 {
 h2 {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #34495e;
+  color: #854679;
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
 /* --- 섹션 기본 스타일 --- */
 section {
-  background-color: #ffffff;
+  background-color: #f0f2eb;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); /* 더 깊은 그림자 */
-  margin-bottom: 30px;
+  box-shadow: 0 10px 16px rgb(188, 188, 188);
+  margin-bottom: 70px;
 }
 
 /* --- 이미지 업로드 섹션 --- */
 .image-uploader-container h2 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #444;
-    margin-bottom: 25px;
+    font-size: 1.7rem;
+    font-weight: 70s0;
+    color: #854679;
+    margin-bottom: 30px;
 }
 
 .image-uploader-container input[type="file"] {
@@ -62,20 +62,21 @@ section {
   color: #555;
   cursor: pointer;
   transition: border-color 0.3s ease-in-out;
-  width: calc(100% - 44px); /* 패딩 고려 */
+  width: calc(100% - 44px); 
 }
 
 .image-uploader-container input[type="file"]:hover {
-  border-color: #3498db; /* 호버 시 파란색 */
+  border-color: #2933ab; /* 호버 시 파란색 */
 }
 
 .image-uploader-container img {
   max-width: 100%; 
   height: auto; 
   border: 1px solid #ddd; 
+  border-color: #555;
   border-radius: 8px;
   margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(212, 207, 207, 0.698);
 }
 
 .image-uploader-container p {
