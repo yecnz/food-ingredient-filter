@@ -1,4 +1,4 @@
-# food-filter/ocr.py (Python 스크립트 - Node.js 연동용)
+# food-filter/ingredient.py (Python 스크립트 - Node.js 연동용)
 
 import cv2
 import pytesseract
@@ -7,13 +7,15 @@ import re
 import sys # 인자 처리를 위해 추가
 import json # JSON 출력을 위해 추가
 from Levenshtein import distance 
+from database import ingredient_dict, MASTER_DB_LIST
+
 
 # --- [설정 1] Tesseract 경로 ---
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # ⚠️ 사용자 경로에 맞게 수정
-# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe" # (Windows 예시)
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe" # (Windows 예시)
 
 # --- [설정 2] 폴더 설정 ---
-BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") # ⚠️ 사용자 경로에 맞게 수정
+#BASE_DIR = r"C:\ingredient\food-filter"# ⚠️ 사용자 경로에 맞게 수정
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_DIR = os.path.join(BASE_DIR, "image")
 RESULT_DIR = os.path.join(BASE_DIR, "result") 
 
@@ -23,35 +25,54 @@ os.makedirs(IMAGE_DIR, exist_ok=True)
 # --- [설정 3] OCR 설정 ---
 OCR_CONFIG = '--oem 3 --psm 3' 
 
-# ===== 1. 성분 사전 (데이터베이스) =====
-# Node.js에서 전달받은 user_settings를 기반으로 필터링하는 DB
-ingredient_dict = {
-    # 식약처 고시 19종 + 호두, 잣 (사용자 코드 기반)
-    "알레르겐": [
-        "우유", "달걀", "계란", "밀", "메밀", "땅콩", "대두", "잣", "새우", "게",
-        "오징어", "고등어", "조개류", "닭고기", "쇠고기", "돼지고기", "복숭아",
-        "토마토", "아황산류", "호두"
-    ],
-
-    "비건X": [
-        "꿀", "젤라틴", "카제인", "버터", "유청", "난백", "난황", "락토스",
-        "코치닐", "카민", 
-        "쉘락", "L-시스테인", "비타민 D3",
-        "동물성유지", "동물성지방", "돈지", "우지", "콜라겐"      
-        ],
-
-    "기타기피": [
-        "MSG", "트랜스지방", "사카린", "아스파탐", "아세설팜칼륨", "수크랄로스"
-    ]
-}
-
 # ===== 2. 동의어/확장 매핑 =====
 synonyms = {
-    "전지분유": "우유", "탈지분유": "우유", "분유": "우유", "카제인": "우유",
-    "레시틴": "대두", "콩기름": "대두", "두유": "대두", "달걀": "계란",
-    "난백": "계란", "난황": "계란", "닭가슴살": "닭고기"
+    "전지분유": "우유",
+    "탈지분유": "우유",
+    "분유": "우유",
+    "카제인": "우유",  # 카제인은 '비건X'이면서 '우유 알레르겐'일 수 있음
+    "레시틴": "대두",  # '대두 레시틴'의 경우
+    "콩기름": "대두",
+    "두유": "대두",
+    "달걀": "계란",
+    "난백": "계란",
+    "난황": "계란",
+    "닭가슴살": "닭고기"
 }
 
+def correct_word_with_db(word, db):
+    """동적 임계값을 사용하여 레벤슈타인 거리 기반 단어 교정"""
+    word_len = len(word)
+    threshold = max(1, word_len // 4 + 1) # (이전 코드에서 가져옴)
+    min_dist = float('inf')
+    best_match = word
+    for correct_word in db:
+        if abs(len(correct_word) - word_len) > threshold:
+             continue
+        dist = distance(word, correct_word)
+        if dist < min_dist:
+            min_dist = dist
+            best_match = correct_word
+    if min_dist <= threshold:
+        return best_match
+    else:
+        return word 
+
+def postprocess_text(text):
+    """유사도 기반 교정 및 텍스트 필터링"""
+    words = re.split(r'([,\s\(\)])', text)
+    corrected_words = []
+    for word in words:
+        if re.match(r'^[가-힣]{2,}$', word):
+            # MASTER_DB_LIST는 database.py에서 import함
+            corrected_word = correct_word_with_db(word, MASTER_DB_LIST) 
+            corrected_words.append(corrected_word)
+        else:
+            corrected_words.append(word)
+    corrected_text = "".join(corrected_words)
+    lines = corrected_text.split('\n')
+    filtered_lines = [line.strip() for line in lines if len(line.strip()) > 1]
+    return '\n'.join(filtered_lines)
 
 # --- [함수] OCR 전처리 및 교정 로직 ---
 def preprocess_for_ocr(image):
@@ -64,6 +85,7 @@ def preprocess_for_ocr(image):
 
 # (기존 ocr.py의 correct_word_with_db와 postprocess_text 함수가 필요하나, 
 #  시간 절약을 위해 여기서는 필터링 로직에 집중하고 OCR 교정은 생략합니다.)
+
 
 # --- [함수] 성분 분리 및 매칭 로직 ---
 def parse_ingredients(text):

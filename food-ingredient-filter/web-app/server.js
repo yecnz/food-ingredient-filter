@@ -5,15 +5,12 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { spawn } = require('child_process'); // Python 실행을 위한 모듈
+const { spawn } = require('child_process'); 
 
 const app = express();
-const port = 5000; // React가 3000번을 쓰므로, 서버는 5000번 포트를 사용합니다.
+const port = 5000; 
 
-// 파일 저장 경로 설정 (Python ocr.py가 읽을 폴더)
-// __dirname: 현재 web-app 폴더
-// '..': food-filter 폴더
-// 'image': food-filter/image 폴더
+// 파일 저장 경로 설정 (food-filter/image)
 const UPLOAD_DIR = path.join(__dirname, '..', 'image'); 
 
 // image 폴더가 없으면 생성
@@ -36,7 +33,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.use(cors()); // CORS 허용
+app.use(cors());
 app.use(express.json());
 
 // --- 이미지 업로드 처리 API ---
@@ -46,10 +43,9 @@ app.post('/upload', upload.single('image'), (req, res) => {
   }
   
   const userSettingsJson = req.body.settings;
-  let settings = {};
   
   try {
-      settings = JSON.parse(userSettingsJson);
+      JSON.parse(userSettingsJson);
   } catch (e) {
       console.error("Failed to parse settings JSON:", e);
       return res.status(500).json({ success: false, message: '사용자 설정 데이터 오류.' });
@@ -57,11 +53,12 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
   // --- Python OCR 스크립트 실행 ---
   
-  // 1. Python 스크립트 경로 설정 (food-filter/ocr.py)
+  // 1. Python 스크립트 경로 설정 (food-filter/ingredient.py)
   const pythonScriptPath = path.join(__dirname, '..', 'ingredient.py'); 
   
-  // 2. Python 실행 명령어 설정 
-const pythonExecutable = 'C:\\Users\\haneul\\AppData\\Local\\Programs\\Python\\Python312\\python.exe';
+  // 2. Python 실행 명령어 설정 (Mac용)
+  const pythonExecutable = 'python3'; 
+
   // 3. Python 스크립트를 실행하고, 사용자 설정(JSON 문자열)과 파일명을 인자로 전달
   const pythonProcess = spawn(pythonExecutable, [
       pythonScriptPath, 
