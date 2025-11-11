@@ -1,3 +1,5 @@
+# food-filter/database.py
+
 ingredient_dict = {
     # 식약처 고시 19종 + 호두, 잣 (사용자 코드 기반)
     "알레르겐": [
