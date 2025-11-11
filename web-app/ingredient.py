@@ -4,16 +4,17 @@ import cv2
 import pytesseract
 import os
 import re
-import sys # 인자 처리를 위해 추가
-import json # JSON 출력을 위해 추가
+import sys 
+import json 
 from Levenshtein import distance 
 from database import ingredient_dict, MASTER_DB_LIST
 
 
 # --- [설정 1] Tesseract 경로 ---
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # 경로 수정
+pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # ⚠️ Mac 경로로 수정
+
 # --- [설정 2] 폴더 설정 ---
-#BASE_DIR = r"C:\ingredient\food-filter"# ⚠️ 사용자 경로에 맞게 수정
+# 이 스크립트 파일이 있는 폴더를 기준으로 경로 자동 설정
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_DIR = os.path.join(BASE_DIR, "image")
 RESULT_DIR = os.path.join(BASE_DIR, "result") 
@@ -29,8 +30,8 @@ synonyms = {
     "전지분유": "우유",
     "탈지분유": "우유",
     "분유": "우유",
-    "카제인": "우유",  # 카제인은 '비건X'이면서 '우유 알레르겐'일 수 있음
-    "레시틴": "대두",  # '대두 레시틴'의 경우
+    "카제인": "우유", 
+    "레시틴": "대두", 
     "콩기름": "대두",
     "두유": "대두",
     "달걀": "계란",
@@ -42,7 +43,7 @@ synonyms = {
 def correct_word_with_db(word, db):
     """동적 임계값을 사용하여 레벤슈타인 거리 기반 단어 교정"""
     word_len = len(word)
-    threshold = max(1, word_len // 4 + 1) # (이전 코드에서 가져옴)
+    threshold = max(1, word_len // 4 + 1)
     min_dist = float('inf')
     best_match = word
     for correct_word in db:
@@ -63,7 +64,6 @@ def postprocess_text(text):
     corrected_words = []
     for word in words:
         if re.match(r'^[가-힣]{2,}$', word):
-            # MASTER_DB_LIST는 database.py에서 import함
             corrected_word = correct_word_with_db(word, MASTER_DB_LIST) 
             corrected_words.append(corrected_word)
         else:
@@ -82,10 +82,6 @@ def preprocess_for_ocr(image):
     binary = cv2.adaptiveThreshold(enhanced, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 8)
     return binary
 
-# (기존 ocr.py의 correct_word_with_db와 postprocess_text 함수가 필요하나, 
-#  시간 절약을 위해 여기서는 필터링 로직에 집중하고 OCR 교정은 생략합니다.)
-
-
 # --- [함수] 성분 분리 및 매칭 로직 ---
 def parse_ingredients(text):
     """텍스트에서 괄호 안팎의 성분을 모두 분리하여 리스트로 반환"""
@@ -101,28 +97,22 @@ def parse_ingredients(text):
     return outer_parts + parsed
 
 def match_ingredients(parsed_ingredients, db, synonyms_map, user):
-    """
-    [역할 B]의 '동의어 포함 검사' 로직과 
-    [역할 A/C]의 'JSON 출력' 로직을 합친 함수
-    """
     results = {
-        "경고": set(),  # 사용자의 '알레르기'와 일치
-        "주의": set(),  # 사용자의 '비건/기타기피'와 일치
-        "안전": set()   # 어디에도 해당하지 않음
+        "경고": set(), 
+        "주의": set(), 
+        "안전": set() 
     }
     matched_original_ingredients = set()
 
-    # --- [1. 님의 개선된 매칭 로직 시작] ---
     for ing in parsed_ingredients:
-        if not ing: # 빈 문자열이나 None 건너뛰기
+        if not ing: 
             continue
             
         if ing in matched_original_ingredients:
             continue
 
-        # 1. 동의어 변환 로직
-        check_value = ing  # 일단 원본으로 시작
-        standardized_value = None # 표준화된 값 (예: "우유", "닭고기")
+        check_value = ing 
+        standardized_value = None 
 
         for syn_key, syn_value in synonyms_map.items():
             if syn_key in ing:
@@ -134,7 +124,6 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
         
         found = False
 
-        # 2. [경고] 알레르겐 검사
         for allergen_item in db["알레르겐"]:
             if (check_value == allergen_item or allergen_item in ing) and allergen_item in user["알레르기"]:
                 results["경고"].add(ing) 
@@ -144,7 +133,6 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
         
         if found: continue
 
-        # 3. [주의] 비건 검사
         if user["비건"]:
             for vegan_item in db["비건X"]:
                 if (check_value == vegan_item or vegan_item in ing):
@@ -155,7 +143,6 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
         
         if found: continue
 
-        # 4. [주의] 기타 기피 성분 검사
         for etc_item in db["기타기피"]:
             if (check_value == etc_item or etc_item in ing) and etc_item in user["기타기피"]:
                 results["주의"].add(ing)
@@ -163,13 +150,10 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
                 found = True
                 break
 
-        # 5. [안전]
         if not found:
             results["안전"].add(ing)
             matched_original_ingredients.add(ing)
-    # --- [님의 매칭 로직 끝] ---
 
-    # --- [2. A/C의 JSON 출력 로직 시작] ---
     final_results = []
     warning_list = list(results["경고"])
     caution_list = list(results["주의"])
@@ -199,10 +183,8 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
 def main_analysis(user_settings_json, image_filename):
     """Node.js로부터 인자를 받아 OCR을 실행하고 결과를 JSON으로 출력"""
     try:
-        # [★수정★] (1. 사용자 설정 파싱 - 누락된 코드 복원)
         user_settings = json.loads(user_settings_json)
         
-        # [★수정★] (2. 이미지 로드 - 누락된 코드 복원)
         image_path = os.path.join(IMAGE_DIR, image_filename)
         
         if not os.path.exists(image_path):
@@ -213,42 +195,31 @@ def main_analysis(user_settings_json, image_filename):
         if image is None:
             raise IOError(f"이미지를 로드할 수 없거나 손상되었습니다: {image_path}")
         
-        # (3. OCR 전처리)
         processed_image = preprocess_for_ocr(image)
         
-        # (4. OCR 실행)
         raw_text = pytesseract.image_to_string(processed_image, lang="kor", config=OCR_CONFIG)
         
-        # [★수정★] 오타 교정(postprocess_text)을 수행합니다.
-        corrected_text = postprocess_text(raw_text) # <-- raw_text가 아닌 교정된 텍스트
+        corrected_text = postprocess_text(raw_text) 
         
-        # (5. OCR 결과 텍스트를 파일로 저장 - 선택 사항)
         base_name = os.path.splitext(image_filename)[0]
         output_filename = f"{base_name}_ocr_result.txt"
         output_path = os.path.join(RESULT_DIR, output_filename)
         with open(output_path, "w", encoding="utf-8") as f:
-            f.write(corrected_text) # <-- 교정된 텍스트를 저장
+            f.write(corrected_text) 
         
-        # (6. 성분 분석 및 매칭 - 핵심)
-        # [★수정★] 교정된 텍스트를 분석에 사용합니다.
         ingredients = parse_ingredients(corrected_text) 
         analysis_results = match_ingredients(ingredients, ingredient_dict, synonyms, user_settings)
         
-        # (7. 결과를 JSON 형식으로 표준 출력 - Node.js가 받음)
         print(json.dumps(analysis_results, ensure_ascii=False))
 
     except Exception as e:
-        # 오류 발생 시 오류 메시지를 JSON 형식이 아닌,
-        # 순수 텍스트로 'stderr'에 출력해야 Node.js가 인식합니다.
-        print(f"MAIN_ANALYSIS_ERROR: {str(e)}", file=sys.stderr) # ✅ 이렇게 수정
+        print(f"MAIN_ANALYSIS_ERROR: {str(e)}", file=sys.stderr)
         sys.exit(1)
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        # Node.js에서 인자가 충분히 전달되지 않은 경우
-        # 여기도 'stderr'로 출력하도록 수정합니다.
-        print("ARGUMENT_ERROR: 사용자 설정 및 파일명이 전달되지 않았습니다.", file=sys.stderr) # ✅ 이렇게 수정
+        print("ARGUMENT_ERROR: 사용자 설정 및 파일명이 전달되지 않았습니다.", file=sys.stderr)
         sys.exit(1)
         
     main_analysis(sys.argv[1], sys.argv[2])
