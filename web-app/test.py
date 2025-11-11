@@ -108,11 +108,11 @@ def analyze_product(ocr_text, user_settings):
         print(f"  {level}: {items}")
     
     if matched["경고"]:
-        print(">> 최종 판정: 🚨 경고")
+        print(">> 최종 판정: 경고")
     elif matched["주의"]:
-        print(">> 최종 판정: ⚠️ 주의")
+        print(">> 최종 판정: 주의")
     else:
-        print(">> 최종 판정: ✅ 안전")
+        print(">> 최종 판정: 안전")
     print("-" * 30)
     return matched
 
@@ -120,7 +120,7 @@ def analyze_product(ocr_text, user_settings):
 if __name__ == "__main__":
     
     # Mac 경로로 수정
-    BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") 
+    BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") # Mac 경로로 수정
     IMAGE_DIR = os.path.join(BASE_DIR, "image")
     RESULT_DIR = os.path.join(BASE_DIR, "result") 
     os.makedirs(RESULT_DIR, exist_ok=True)

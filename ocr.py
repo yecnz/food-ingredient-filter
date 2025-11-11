@@ -1,19 +1,19 @@
-# food-filter/ocr.py (Python 스크립트 - Node.js 연동용)
+# food-filter/ocr.py (이 코드로 전체 덮어쓰기)
 
 import cv2
 import pytesseract
 import os
 import re
-import sys # 인자 처리를 위해 추가
-import json # JSON 출력을 위해 추가
+import sys 
+import json 
 from Levenshtein import distance 
+from database import MASTER_DB_LIST
 
 # --- [설정 1] Tesseract 경로 ---
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # ⚠️ 사용자 경로에 맞게 수정
-# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe" # (Windows 예시)
+pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # Mac 경로
 
 # --- [설정 2] 폴더 설정 ---
-BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") # ⚠️ 사용자 경로에 맞게 수정
+BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") # Mac 경로
 IMAGE_DIR = os.path.join(BASE_DIR, "image")
 RESULT_DIR = os.path.join(BASE_DIR, "result") 
 
@@ -22,212 +22,93 @@ os.makedirs(IMAGE_DIR, exist_ok=True)
 
 # --- [설정 3] OCR 설정 ---
 OCR_CONFIG = '--oem 3 --psm 3' 
-
-# ===== 1. 성분 사전 (데이터베이스) =====
-# Node.js에서 전달받은 user_settings를 기반으로 필터링하는 DB
-ingredient_dict = {
-    # 식약처 고시 19종 + 호두, 잣 (사용자 코드 기반)
-    "알레르겐": [
-        "우유", "달걀", "계란", "밀", "메밀", "땅콩", "대두", "잣", "새우", "게",
-        "오징어", "고등어", "조개류", "닭고기", "쇠고기", "돼지고기", "복숭아",
-        "토마토", "아황산류", "호두"
-    ],
-
-    "비건X": [
-        "꿀", "젤라틴", "카제인", "버터", "유청", "난백", "난황", "락토스",
-        "코치닐", "카민", 
-        "쉘락", "L-시스테인", "비타민 D3",
-        "동물성유지", "동물성지방", "돈지", "우지", "콜라겐"      
-        ],
-
-    "기타기피": [
-        "MSG", "트랜스지방", "사카린", "아스파탐", "아세설팜칼륨", "수크랄로스"
-    ]
-}
-
-# ===== 2. 동의어/확장 매핑 =====
-synonyms = {
-    "전지분유": "우유", "탈지분유": "우유", "분유": "우유", "카제인": "우유",
-    "레시틴": "대두", "콩기름": "대두", "두유": "대두", "달걀": "계란",
-    "난백": "계란", "난황": "계란", "닭가슴살": "닭고기"
-}
-
-
-# --- [함수] OCR 전처리 및 교정 로직 ---
 def preprocess_for_ocr(image):
-    """OCR 정확도를 높이기 위한 이미지 전처리"""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
     enhanced = clahe.apply(gray)
     binary = cv2.adaptiveThreshold(enhanced, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 8)
     return binary
 
-# (기존 ocr.py의 correct_word_with_db와 postprocess_text 함수가 필요하나, 
-#  시간 절약을 위해 여기서는 필터링 로직에 집중하고 OCR 교정은 생략합니다.)
+def correct_word_with_db(word, db):
+    word_len = len(word)
+    threshold = max(1, word_len // 4 + 1)
+    min_dist = float('inf')
+    best_match = word
+    for correct_word in db:
+        if abs(len(correct_word) - word_len) > threshold:
+             continue
+        dist = distance(word, correct_word)
+        if dist < min_dist:
+            min_dist = dist
+            best_match = correct_word
+    if min_dist <= threshold:
+        return best_match
+    else:
+        return word 
 
-# --- [함수] 성분 분리 및 매칭 로직 ---
-def parse_ingredients(text):
-    """텍스트에서 괄호 안팎의 성분을 모두 분리하여 리스트로 반환"""
-    inner_texts = re.findall(r"\((.*?)\)", text)
-    parsed = []
-    for inner in inner_texts:
-        inner_parts = [i.strip() for i in inner.split(",")]
-        parsed.extend(inner_parts)
+def postprocess_text(text):
+    words = re.split(r'([,\s\(\)])', text)
+    corrected_words = []
+    for word in words:
+        if re.match(r'^[가-힣]{2,}$', word):
+            corrected_word = correct_word_with_db(word, MASTER_DB_LIST) 
+            corrected_words.append(corrected_word)
+        else:
+            corrected_words.append(word)
+    corrected_text = "".join(corrected_words)
+    lines = corrected_text.split('\n')
+    filtered_lines = [line.strip() for line in lines if len(line.strip()) > 1]
+    return '\n'.join(filtered_lines)
 
-    no_parentheses_text = re.sub(r"\s*\(.*?\)", "", text)
-    outer_parts = [p.strip() for p in no_parentheses_text.split(",") if p.strip()]
-
-    return outer_parts + parsed
-
-def match_ingredients(parsed_ingredients, db, synonyms_map, user):
+# ===== [★핵심★] 1. 부품 함수 생성 =====
+def process_image_to_text(image_path):
     """
-    [역할 B]의 '동의어 포함 검사' 로직과 
-    [역할 A/C]의 'JSON 출력' 로직을 합친 함수
+    (이 함수가 test.py가 찾는 함수입니다)
+    이미지 경로 1개를 받아서, OCR이 완료된 텍스트 1개를 반환(return)합니다.
     """
-    results = {
-        "경고": set(),  # 사용자의 '알레르기'와 일치
-        "주의": set(),  # 사용자의 '비건/기타기피'와 일치
-        "안전": set()   # 어디에도 해당하지 않음
-    }
-    matched_original_ingredients = set()
-
-    # --- [1. 님의 개선된 매칭 로직 시작] ---
-    for ing in parsed_ingredients:
-        if not ing: # 빈 문자열이나 None 건너뛰기
-            continue
-            
-        if ing in matched_original_ingredients:
-            continue
-
-        # 1. 동의어 변환 로직
-        check_value = ing  # 일단 원본으로 시작
-        standardized_value = None # 표준화된 값 (예: "우유", "닭고기")
-
-        for syn_key, syn_value in synonyms_map.items():
-            if syn_key in ing:
-                standardized_value = syn_value 
-                break 
-        
-        if standardized_value:
-            check_value = standardized_value
-        
-        found = False
-
-        # 2. [경고] 알레르겐 검사
-        for allergen_item in db["알레르겐"]:
-            if (check_value == allergen_item or allergen_item in ing) and allergen_item in user["알레르기"]:
-                results["경고"].add(ing) 
-                matched_original_ingredients.add(ing)
-                found = True
-                break
-        
-        if found: continue
-
-        # 3. [주의] 비건 검사
-        if user["비건"]:
-            for vegan_item in db["비건X"]:
-                if (check_value == vegan_item or vegan_item in ing):
-                    results["주의"].add(ing)
-                    matched_original_ingredients.add(ing)
-                    found = True
-                    break
-        
-        if found: continue
-
-        # 4. [주의] 기타 기피 성분 검사
-        for etc_item in db["기타기피"]:
-            if (check_value == etc_item or etc_item in ing) and etc_item in user["기타기피"]:
-                results["주의"].add(ing)
-                matched_original_ingredients.add(ing)
-                found = True
-                break
-
-        # 5. [안전]
-        if not found:
-            results["안전"].add(ing)
-            matched_original_ingredients.add(ing)
-    # --- [님의 매칭 로직 끝] ---
-
-    # --- [2. A/C의 JSON 출력 로직 시작] ---
-    final_results = []
-    warning_list = list(results["경고"])
-    caution_list = list(results["주의"])
-    safe_list = list(results["안전"])
+    img_original = cv2.imread(image_path)
+    if img_original is None: 
+        print(f"[오류] 이미지를 읽을 수 없습니다: {image_path}")
+        return None 
     
-    if warning_list:
-        final_results.append({
-            "status": "danger",
-            "message": f" 경고: {', '.join(warning_list)}"
-        })
-    if caution_list:
-        final_results.append({
-            "status": "warning",
-            "message": f" 주의: {', '.join(caution_list)}"
-        })
+    processed_image = preprocess_for_ocr(img_original)
+    raw_text = pytesseract.image_to_string(processed_image, lang="kor", config=OCR_CONFIG)
+    corrected_text = postprocess_text(raw_text)
     
-    if not final_results: # 경고/주의가 하나도 없을 때만
-        final_results.append({
-            "status": "safe",
-            "message": f" 안전: 기피 성분 미검출. ({len(safe_list)}가지 일반 성분)"
-        })
+    return corrected_text 
 
-    return final_results
+# --- 메인 처리 루프 ---
+def main():
+    img_files = [f for f in os.listdir(IMAGE_DIR) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
 
+    if not img_files:
+        # ❗️ ocr.py를 단독 실행하면 이 메시지가 떠야 합니다.
+        print(f"[!] '{IMAGE_DIR}' 폴더에 이미지 파일이 없습니다. 이미지 파일을 이 폴더에 넣어주세요.")
+        return
 
-# --- [메인 실행 함수] ---
-def main_analysis(user_settings_json, image_filename):
-    """Node.js로부터 인자를 받아 OCR을 실행하고 결과를 JSON으로 출력"""
-    try:
-        # [★수정★] (1. 사용자 설정 파싱 - 누락된 코드 복원)
-        user_settings = json.loads(user_settings_json)
+    for img_name in img_files:
+        full_path = os.path.join(IMAGE_DIR, img_name)
+        img_original = cv2.imread(full_path)
+        if img_original is None: continue
         
-        # [★수정★] (2. 이미지 로드 - 누락된 코드 복원)
-        image_path = os.path.join(IMAGE_DIR, image_filename)
+        print(f"--- 처리 중: {img_name} ---")
         
-        if not os.path.exists(image_path):
-            raise FileNotFoundError(f"이미지 파일을 찾을 수 없습니다: {image_path}")
-            
-        image = cv2.imread(image_path)
+        corrected_text = process_image_to_text(full_path) # 함수 재사용
         
-        if image is None:
-            raise IOError(f"이미지를 로드할 수 없거나 손상되었습니다: {image_path}")
-        
-        # (3. OCR 전처리)
-        processed_image = preprocess_for_ocr(image)
-        
-        # (4. OCR 실행)
-        raw_text = pytesseract.image_to_string(processed_image, lang="kor", config=OCR_CONFIG)
-        
-        # [★수정★] 오타 교정(postprocess_text)을 수행합니다.
-        corrected_text = postprocess_text(raw_text) # <-- raw_text가 아닌 교정된 텍스트
-        
-        # (5. OCR 결과 텍스트를 파일로 저장 - 선택 사항)
-        base_name = os.path.splitext(image_filename)[0]
-        output_filename = f"{base_name}_ocr_result.txt"
+        base_name = os.path.splitext(img_name)[0]
+        output_filename = f"{base_name}_ocr.txt" 
         output_path = os.path.join(RESULT_DIR, output_filename)
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(corrected_text) # <-- 교정된 텍스트를 저장
         
-        # (6. 성분 분석 및 매칭 - 핵심)
-        # [★수정★] 교정된 텍스트를 분석에 사용합니다.
-        ingredients = parse_ingredients(corrected_text) 
-        analysis_results = match_ingredients(ingredients, ingredient_dict, synonyms, user_settings)
-        
-        # (7. 결과를 JSON 형식으로 표준 출력 - Node.js가 받음)
-        print(json.dumps(analysis_results, ensure_ascii=False))
-
-    except Exception as e:
-        # 오류 발생 시 오류 메시지를 JSON 형식이 아닌,
-        # 순수 텍스트로 'stderr'에 출력해야 Node.js가 인식합니다.
-        print(f"MAIN_ANALYSIS_ERROR: {str(e)}", file=sys.stderr) # ✅ 이렇게 수정
-        sys.exit(1)
+        if corrected_text:
+            try:
+                with open(output_path, "w", encoding="utf-8") as f:
+                    f.write(corrected_text)
+                print(f" 교정된 텍스트 저장 완료: {output_filename}")
+            except Exception as e: 
+                print(f" 파일 저장 중 에러 발생: {e}")
+        else:
+            print(" OCR 결과가 비어있어 저장하지 않습니다.")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        # Node.js에서 인자가 충분히 전달되지 않은 경우
-        # 여기도 'stderr'로 출력하도록 수정합니다.
-        print("ARGUMENT_ERROR: 사용자 설정 및 파일명이 전달되지 않았습니다.", file=sys.stderr) # ✅ 이렇게 수정
-        sys.exit(1)
-        
-    main_analysis(sys.argv[1], sys.argv[2])
+    main()

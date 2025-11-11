@@ -1,13 +1,13 @@
 // web-app/src/App.js
 
 import React, { useState } from 'react';
-import ImageUploader from './ImageUploader'; 
-import AnalysisModal from './AnalysisModal'; 
+import ImageUploader from './ImageUploader';
+import AnalysisModal from './AnalysisModal';
 import './App.css';
 
 const CHECKBOX_OPTIONS = {
-  "알레르기": ["밀", "대두", "땅콩", "우유", "계란", "새우", "게", "닭고기", "쇠고기", "돼지고기"],
-  "기타기피": ["MSG", "사카린", "아스파탐", "수크랄로스"]
+"알레르기": ["밀", "대두", "땅콩", "우유", "계란", "새우", "게", "닭고기", "쇠고기", "돼지고기"],
+"기타기피": ["MSG", "사카린", "아스파탐", "수크랄로스"]
 };
 
 function App() {
