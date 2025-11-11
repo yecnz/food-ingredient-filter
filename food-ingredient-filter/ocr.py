@@ -4,14 +4,13 @@ import cv2
 import pytesseract
 import os
 import re
-import sys # 인자 처리를 위해 추가
-import json # JSON 출력을 위해 추가
+import sys 
+import json 
 from Levenshtein import distance 
 from database import MASTER_DB_LIST
 
 # --- [설정 1] Tesseract 경로 ---
 pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # ⚠️ 사용자 경로에 맞게 수정
-# pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe" # (Windows 예시)
 
 # --- [설정 2] 폴더 설정 ---
 BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") # 사용자 경로에 맞게 수정
@@ -23,8 +22,6 @@ os.makedirs(IMAGE_DIR, exist_ok=True)
 
 # --- [설정 3] OCR 설정 ---
 OCR_CONFIG = '--oem 3 --psm 3' 
-
-
 def preprocess_for_ocr(image):
     """OCR 정확도를 높이기 위한 이미지 전처리"""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -69,7 +66,6 @@ def postprocess_text(text):
             
     corrected_text = "".join(corrected_words)
     
-    # 최종 정리: 공백을 제거하고 한 글자 이하의 빈 줄은 제거합니다.
     lines = corrected_text.split('\n')
     filtered_lines = [line.strip() for line in lines if len(line.strip()) > 1]
     return '\n'.join(filtered_lines)

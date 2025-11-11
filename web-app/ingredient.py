@@ -196,9 +196,7 @@ def main_analysis(user_settings_json, image_filename):
             raise IOError(f"이미지를 로드할 수 없거나 손상되었습니다: {image_path}")
         
         processed_image = preprocess_for_ocr(image)
-        
         raw_text = pytesseract.image_to_string(processed_image, lang="kor", config=OCR_CONFIG)
-        
         corrected_text = postprocess_text(raw_text) 
         
         base_name = os.path.splitext(image_filename)[0]
