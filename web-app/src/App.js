@@ -65,7 +65,7 @@ function App() {
 
   return (
     <div className="App"> 
-       <h1>이건 먹어도대~ 🍎 🍜 🍤</h1>
+       <h1>이건 먹어두대~ 🍎 🍜 🍤</h1>
       
       {/* 1. 알레르기 체크 섹션 */}
       <section>

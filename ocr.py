@@ -1,4 +1,4 @@
-# food-filter/ocr.py (이 코드로 전체 덮어쓰기)
+# food-filter/ocr.py 
 
 import cv2
 import pytesseract
@@ -10,10 +10,10 @@ from Levenshtein import distance
 from database import MASTER_DB_LIST
 
 # --- [설정 1] Tesseract 경로 ---
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # Mac 경로
+pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # ⚠️ Mac 경로
 
 # --- [설정 2] 폴더 설정 ---
-BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") # Mac 경로
+BASE_DIR = os.path.expanduser("~/Desktop/project/food-filter") # ⚠️ Mac 경로
 IMAGE_DIR = os.path.join(BASE_DIR, "image")
 RESULT_DIR = os.path.join(BASE_DIR, "result") 
 

@@ -1,5 +1,4 @@
-# food-filter/test.py (최종 수정본)
-
+# food-filter/test.py
 import os
 import re
 from Levenshtein import distance 
