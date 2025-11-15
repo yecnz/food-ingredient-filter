@@ -26,7 +26,7 @@ export default function ImageUploader({ onUploadSuccess, userSettings }) {
 
         try {
             // 3. 서버에 POST 요청 (Node.js 서버)
-            const response = await fetch('http://localhost:5000/upload', {
+            const response = await fetch('http://localhost:5001/upload', {
                 method: 'POST',
                 body: formData,
             });

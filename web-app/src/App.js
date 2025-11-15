@@ -116,7 +116,7 @@ function App() {
 
       {/* 2. 이미지 업로드 섹션 */}
       <section className="image-uploader-container">
-        <h2>성분표 이미지 업로드 및 분석 요청</h2>
+        <h2>성분표 이미지를 업로드해주세요</h2>
         {/* userSettingsData를 ImageUploader에 전달 */}
         <ImageUploader 
             onUploadSuccess={handleUploadSuccess} 
