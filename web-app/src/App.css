@@ -1,5 +1,4 @@
 /* src/App.css */
-
 /* --- 기본 설정 --- */
 body {
   margin: 10;
@@ -44,29 +43,11 @@ section {
   margin-bottom: 70px;
 }
 
-/* --- 이미지 업로드 섹션 --- */
 .image-uploader-container h2 {
     font-size: 1.7rem;
-    font-weight: 70s0;
+    font-weight: 700; 
     color: #854679;
     margin-bottom: 30px;
-}
-
-.image-uploader-container input[type="file"] {
-  display: block;
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: 2px dashed #a0a0a0; /* 점선 테두리 */
-  border-radius: 10px;
-  background-color: #fdfdfd;
-  color: #555;
-  cursor: pointer;
-  transition: border-color 0.3s ease-in-out;
-  width: calc(100% - 44px); 
-}
-
-.image-uploader-container input[type="file"]:hover {
-  border-color: #2933ab; /* 호버 시 파란색 */
 }
 
 .image-uploader-container img {
@@ -90,9 +71,9 @@ section {
 /* --- 결과 카드 컨테이너 --- */
 .result-card-container {
   display: flex; 
-  flex-wrap: wrap; /* 카드가 넘치면 다음 줄로 */
+  flex-wrap: wrap;
   gap: 25px;     
-  justify-content: center; /* 카드 중앙 정렬 */
+  justify-content: center;
   padding-bottom: 15px;
   margin-top: 30px;
 }
@@ -101,46 +82,138 @@ section {
 .result-card {
   padding: 25px;
   border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* 더 부드럽고 깊은 그림자 */
-  width: 320px; /* 카드 폭 약간 늘림 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  width: 320px;
   flex-shrink: 0; 
-  transition: transform 0.2s ease-in-out; /* 호버 애니메이션 */
+  transition: transform 0.2s ease-in-out;
 }
 
 .result-card:hover {
-  transform: translateY(-5px); /* 호버 시 약간 위로 뜨는 효과 */
+  transform: translateY(-5px);
 }
 
 .result-card h2 {
-    font-size: 1.5rem; /* 제목 크기 키움 */
+    font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 10px; /* 아이콘과 텍스트 사이 간격 */
+    gap: 10px;
 }
 
 .result-card p {
     font-size: 1.05rem;
     color: #555;
-    margin-top: 10px; /* 본문 상단 여백 */
+    margin-top: 10px;
 }
 
 /* --- 상태별 색상 및 테두리 --- */
 .result-card.safe {
-  background-color: #eaf7ed; /* 더 연한 녹색 */
-  border: 2px solid #5cb85c; /* 더 생생한 녹색 테두리 */
+  background-color: #eaf7ed;
+  border: 2px solid #5cb85c;
   color: #2e8b57;
 }
 
 .result-card.warning {
-  background-color: #fff8e1; /* 더 연한 노란색 */
-  border: 2px solid #f0ad4e; /* 더 생생한 노란색 테두리 */
+  background-color: #fff8e1;
+  border: 2px solid #f0ad4e;
   color: #cd853f;
 }
 
 .result-card.danger {
-  background-color: #ffeaea; /* 더 연한 빨간색 */
-  border: 2px solid #d9534f; /* 더 생생한 빨간색 테두리 */
+  background-color: #ffeaea;
+  border: 2px solid #d9534f;
   color: #b22222;
+}
+
+
+.custom-file-button,
+.analyze-button {
+    background-color: #2c3e50; /* 진한 남색 */
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-file-button:hover,
+.analyze-button:hover {
+    background-color: #34495e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.analyze-button:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.change-image-button {
+    background-color: lightgray;
+    color: #555;
+    padding: 10px 20px;
+    margin-left: 15px;
+    border: 1px solid #7d7d7d;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.change-image-button:hover {
+    background-color: #f9f9f9;
+    border-color: #aaa;
+}
+
+.change-image-button:disabled {
+    background-color: #f5f5f5;
+    color: #ccc;
+    border-color: #eee;
+    cursor: not-allowed;
+}
+
+.crop-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.crop-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.crop-modal-cropper-container {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+  border: 1px solid #eee;
+}
+
+.crop-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
