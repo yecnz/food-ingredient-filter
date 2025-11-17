@@ -1,19 +1,15 @@
-# food-filter/ingredient.py
+# food-filter/ingredient.py 
 
 import cv2
-import pytesseract
 import os
 import re
 import sys 
 import json 
 from Levenshtein import distance 
 from database import ingredient_dict, MASTER_DB_LIST
+import requests 
 
 
-# --- [설정 1] Tesseract 경로 ---
-pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract" # ⚠️ Mac 경로
-
-# --- [설정 2] 폴더 설정 ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_DIR = os.path.join(BASE_DIR, "image")
 RESULT_DIR = os.path.join(BASE_DIR, "result") 
@@ -21,10 +17,10 @@ RESULT_DIR = os.path.join(BASE_DIR, "result")
 os.makedirs(RESULT_DIR, exist_ok=True)
 os.makedirs(IMAGE_DIR, exist_ok=True) 
 
-# --- [설정 3] OCR 설정 ---
-OCR_CONFIG = '--oem 3 --psm 3' 
 
-# ===== 2. 동의어/확장 매핑 =====
+CLOVA_OCR_API_URL = "https://a18dk4640m.apigw.ntruss.com/custom/v1/47800/4904ecf8f752bfcaedf4d152c0d88318fa3cbfbd5d5e1054d3e002fed7bc4fed/general"
+CLOVA_OCR_SECRET_KEY = "dHhTSXZxZk5Oa0RPQlZJZnJDaVh5Z3BacE12d0Z5VmE="
+
 synonyms = {
     "전지분유": "우유", "탈지분유": "우유", "분유": "우유", "카제인": "우유", 
     "레시틴": "대두", "콩기름": "대두", "두유": "대두", "달걀": "계란",
@@ -62,12 +58,41 @@ def postprocess_text(text):
     filtered_lines = [line.strip() for line in lines if len(line.strip()) > 1]
     return '\n'.join(filtered_lines)
 
-def preprocess_for_ocr(image):
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
-    enhanced = clahe.apply(gray)
-    binary = cv2.adaptiveThreshold(enhanced, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 8)
-    return binary
+def call_clova_ocr(image_path):
+    headers = {
+        'X-OCR-SECRET': CLOVA_OCR_SECRET_KEY
+    }
+    
+    payload = {
+        'images': [
+            {
+                'format': 'jpg', # (필요하면 'png'로)
+                'name': 'ingredient_image'
+            }
+        ],
+        'requestId': 'string',
+        'version': 'V2',
+        'timestamp': 0
+    }
+
+    files = [
+        ('file', open(image_path, 'rb')),
+        ('message', (None, json.dumps(payload), 'application/json'))
+    ]
+    
+    response = requests.post(CLOVA_OCR_API_URL, headers=headers, files=files)
+    
+    if response.status_code != 200:
+        raise Exception(f"CLOVA OCR Error: {response.text}")
+
+    result_json = response.json()
+    
+    raw_text = ""
+    for field in result_json['images'][0]['fields']:
+        raw_text += field['inferText'] + " " # (글자 사이에 '공백' 추가)
+    
+    return raw_text
+
 
 def parse_ingredients(text):
     inner_texts = re.findall(r"\((.*?)\)", text)
@@ -81,17 +106,17 @@ def parse_ingredients(text):
 
 def match_ingredients(parsed_ingredients, db, synonyms_map, user):
     results = {"경고": set(), "주의": set(), "안전": set()}
-    
+
     detected_allergens = set()
     detected_etc = set()
     detected_vegan = set()
-    
+
     matched_original_ingredients = set()
 
     for ing in parsed_ingredients:
         if not ing or ing in matched_original_ingredients: 
             continue
-        
+
         check_value = ing 
         standardized_value = None 
 
@@ -99,10 +124,10 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
             if syn_key in ing:
                 standardized_value = syn_value 
                 break 
-        
+
         if standardized_value:
             check_value = standardized_value
-        
+
         found = False
 
         for allergen_item in db["알레르겐"]:
@@ -112,7 +137,7 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
                 matched_original_ingredients.add(ing)
                 found = True
                 break
-        
+
         if found: continue
 
         if user["비건"]:
@@ -123,7 +148,7 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
                     matched_original_ingredients.add(ing)
                     found = True
                     break
-        
+
         if found: continue
 
         for etc_item in db["기타기피"]:
@@ -138,51 +163,39 @@ def match_ingredients(parsed_ingredients, db, synonyms_map, user):
             results["안전"].add(ing)
             matched_original_ingredients.add(ing)
 
-    # --- [결과 포맷 수정] ---
     final_results = []
-    
     warning_list = list(detected_allergens)
     caution_list = list(detected_etc | detected_vegan)
     safe_list = list(results["안전"])
-    
+
     if warning_list:
         final_results.append({
             "status": "danger",
             "type": "알레르기",
-            "ingredients": warning_list 
+            "ingredients": warning_list
         })
-        
     if caution_list:
         final_results.append({
             "status": "warning",
             "type": "기타기피",
             "ingredients": caution_list
         })
-        
-    if not final_results:
-        final_results.append({
-            "status": "safe", 
-            "message": f"안전: 기피 성분 미검출. ({len(safe_list)}가지 일반 성분)"
-        })
+    if not final_results: 
+        final_results.append({"status": "safe", "message": f" 안전: 기피 성분 미검출. ({len(safe_list)}가지 일반 성분)"})
 
     return final_results
 
 # --- [메인 실행 함수] ---
 def main_analysis(user_settings_json, image_filename):
-    """Node.js로부터 인자를 받아 OCR을 실행하고 결과를 JSON으로 출력"""
     try:
         user_settings = json.loads(user_settings_json)
         image_path = os.path.join(IMAGE_DIR, image_filename)
         
         if not os.path.exists(image_path):
             raise FileNotFoundError(f"이미지 파일을 찾을 수 없습니다: {image_path}")
-            
-        image = cv2.imread(image_path)
-        if image is None:
-            raise IOError(f"이미지를 로드할 수 없거나 손상되었습니다: {image_path}")
         
-        processed_image = preprocess_for_ocr(image)
-        raw_text = pytesseract.image_to_string(processed_image, lang="kor", config=OCR_CONFIG)
+        raw_text = call_clova_ocr(image_path)
+
         corrected_text = postprocess_text(raw_text) 
         
         base_name = os.path.splitext(image_filename)[0]
