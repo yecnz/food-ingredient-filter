@@ -1,5 +1,4 @@
 /* src/App.css */
-/* --- 기본 설정 --- */
 body {
   margin: 10;
   -webkit-font-smoothing: antialiased;
@@ -34,7 +33,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* --- 섹션 기본 스타일 --- */
 section {
   background-color: #f0f2eb;
   padding: 30px;
@@ -67,8 +65,6 @@ section {
     color: #555;
 }
 
-
-/* --- 결과 카드 컨테이너 --- */
 .result-card-container {
   display: flex; 
   flex-wrap: wrap;
@@ -78,7 +74,6 @@ section {
   margin-top: 30px;
 }
 
-/* --- 개별 결과 카드 --- */
 .result-card {
   padding: 25px;
   border-radius: 15px;
@@ -107,7 +102,6 @@ section {
     margin-top: 10px;
 }
 
-/* --- 상태별 색상 및 테두리 --- */
 .result-card.safe {
   background-color: #eaf7ed;
   border: 2px solid #5cb85c;
@@ -126,10 +120,9 @@ section {
   color: #b22222;
 }
 
-
 .custom-file-button,
 .analyze-button {
-    background-color: #2c3e50; /* 진한 남색 */
+    background-color: #2c3e50;
     color: white;
     padding: 12px 22px;
     border: none;
@@ -237,7 +230,7 @@ section {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   width: 90%;
-  max-width: 400px; /* '메인' 팝업보다 '작게' */
+  max-width: 400px;
   text-align: center;
 }
 
@@ -255,12 +248,11 @@ section {
   margin-bottom: 20px;
 }
 
-/* 3. '클릭 가능한' 성분 텍스트 (밑줄) */
 .clickable-ingredient {
-  color: #d9534f; /* '경고' 글씨색 (빨간색) */
-  text-decoration: underline; /* '밑줄' */
-  cursor: pointer; /* '손가락' 커서 */
-  margin: 0 4px; /* 좌우 여백 */
+  color: #d9534f;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 4px;
   transition: color 0.2s;
 }
 
@@ -326,49 +318,10 @@ section {
   border-bottom: 4px solid #d94686;
 }
 
-
-.pref-group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-}
-
-.pref-label {
-  font-weight: 600;
-  color: #555;
-  font-size: 1.1rem;
-}
-
-.pref-button {
-  background-color: #fff;
-  color: #555;
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 20px; /* '알약' 100% '모양' */
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-}
-
-.pref-button:hover {
-  background-color: #f0f0f0;
-  border-color: #aaa;
-}
-
-.pref-button.active {
-  background-color: #854679; /* 'h2' (보라) 색상 */
-  color: white;
-  border-color: #854679;
-  font-weight: 600;
-}
-
 .recommend-result-box {
   margin-top: 30px;
   padding: 20px;
-  background-color: #eaf7ed; /* '안전' (녹색) 배경 */
+  background-color: #eaf7ed;
   border: 2px solid #5cb85c;
   border-radius: 10px;
   text-align: center;
@@ -387,10 +340,17 @@ section {
   color: #555;
 }
 
+.recommend-avoid-list {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
 .recommend-error-box {
   margin-top: 30px;
   padding: 20px;
-  background-color: #fff8e1; /* '주의' (노랑) 배경 */
+  background-color: #fff8e1;
   border: 2px solid #f0ad4e;
   border-radius: 10px;
   text-align: center;
@@ -433,4 +393,176 @@ section {
   cursor: pointer;
   width: 16px; 
   height: 16px;
+}
+
+.current-settings {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  background-color: #e9e9e9;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.survey-container {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.survey-back-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #555;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    float: left;
+    margin-bottom: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.survey-back-button:hover {
+    background-color: #e0e0e0;
+    text-decoration: none;
+}
+
+.survey-question {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  clear: both;
+}
+
+.survey-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.survey-option-button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1.05rem;
+  color: #333;
+  width: 80%;
+  max-width: 400px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0, 0.05);
+}
+
+.survey-option-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0, 0.1);
+  border-color: #854679;
+  color: #854679;
+}
+
+.loading-container {
+  text-align: center;
+  padding: 50px 0;
+}
+.loading-container h2 {
+  color: #854679;
+}
+.loading-container p {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #854679;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-image-wrapper {
+  width: 250px;
+  height: 250px;
+  margin: 30px auto 0 auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.loading-food-carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.recipe-button {
+    background-color: #5bc0de;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.recipe-button:hover {
+    background-color: #31b0d5;
+    transform: translateY(-2px);
+}
+
+.recipe-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.recipe-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: left;
+    box-shadow: 0 2px 4px rgba(0,0,0, 0.05);
+}
+
+.recipe-item h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.recipe-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #888;
 }

@@ -23,7 +23,7 @@ function App() {
   const [analysisResult, setAnalysisResult] = useState([]);
   const [showModal, setShowModal] = useState(false);
   
-  const [activeTab, setActiveTab] = useState('analyzer'); // 'analyzer' vs 'recommender'
+  const [activeTab, setActiveTab] = useState('analyzer');
 
   const handleCheckboxChange = (category, item) => {
     setCheckedItems(prev => {
@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div className="App">
-       <h1>이건 먹어두대~ 🍎 🍜 🍤</h1>
+      <h1>이건 먹어두대~ 🍎 🍜 🍤</h1>
       
       <div className="tab-container">
         <button 
