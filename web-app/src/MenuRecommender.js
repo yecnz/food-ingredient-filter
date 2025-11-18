@@ -1,21 +1,19 @@
 // web-app/src/MenuRecommender.js
-
 import React, { useState, useEffect } from 'react';
 import { recipeDB } from './recipeDB';
 
 const surveySteps = [
     { id: 'category', question: '1) 어떤 종류의 음식을 선호하시나요?', options: ['한식', '중식', '일식', '양식', '아시안', '상관없음'] },
-    { id: 'flavor', question: '2) 어떤 맛을 가장 선호하나요?', options: ['매운 맛', '담백한 맛', '달콤짭짤한 맛', '고소하고 진한 맛', '상큼하고 가벼운 맛', '상관없음'] },
+    { id: 'flavor', question: '2) 어떤 맛을 가장 선호하나요?', options: ['매운 맛', '담백한 맛', '달콤짭짤한 맛', '상큼하고 가벼운 맛', '상관없음'] },
     { id: 'temperature', question: '3) 지금 먹고 싶은 음식의 온도는 어떤가요?', options: ['뜨겁고 얼큰한', '따뜻하고 편안한', '차갑고 시원한', '상관없음'] },
-    { id: 'form', question: '4) 어떤 형태의 식사가 더 좋나요?', options: ['면 요리', '밥 요리', '국물 요리', '빵/버거류', '가벼운 한 끼', '상관없음'] },
-    { id: 'style', question: '5) 향이나 자극에 대한 선호도는 어떤가요?', options: ['향신료 강한 음식', '향신료 약한 음식', '고기 중심 요리', '채소·가벼운 식단', '상관없음'] }
+    { id: 'form', question: '4) 어떤 형태의 식사가 더 좋나요?', options: ['면 요리', '밥 요리', '국물 요리', '가벼운 한 끼', '상관없음'] },
+    { id: 'style', question: '5) 향이나 자극에 대한 선호도는 어떤가요?', options: ['향신료 강한 음식', '고기 중심 요리', '채소·가벼운 식단', '상관없음'] }
 ];
 
 const preferenceMap = {
     '매운 맛': '매운',
     '담백한 맛': '담백',
     '달콤짭짤한 맛': '달콤짭짤',
-    '고소하고 진한 맛': '고소',
     '상큼하고 가벼운 맛': '상큼',
     '뜨겁고 얼큰한': '뜨겁',
     '따뜻하고 편안한': '따뜻',
@@ -23,10 +21,8 @@ const preferenceMap = {
     '면 요리': '면',
     '밥 요리': '밥',
     '국물 요리': '국물',
-    '빵/버거류': '빵',
     '가벼운 한 끼': '가벼운',
     '향신료 강한 음식': '향신료강',
-    '향신료 약한 음식': '약함',
     '고기 중심 요리': '고기',
     '채소·가벼운 식단': '채소'
 };
@@ -118,10 +114,15 @@ function MenuRecommender({ userSettings }) {
             Object.entries(finalPreferences).forEach(([key, value]) => {
                 if (value === '상관없음') return;
 
-                const mapped = preferenceMap[value];
-                if (!mapped) return;
-
-                filteredList = filteredList.filter(recipe => recipe[key] === mapped);
+                if (key === 'category') {
+                    filteredList = filteredList.filter(recipe => recipe.category === value);
+                } 
+                else {
+                    const mapped = preferenceMap[value];
+                    if (mapped) {
+                        filteredList = filteredList.filter(recipe => recipe[key] === mapped);
+                    }
+                }
             });
 
             if (filteredList.length > 0) {
