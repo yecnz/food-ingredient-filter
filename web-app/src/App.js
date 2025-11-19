@@ -5,6 +5,7 @@ import CheckboxGroup from './CheckboxGroup';
 import ImageUploader from './ImageUploader';
 import AnalysisModal from './AnalysisModal';
 import MenuRecommender from './MenuRecommender';
+import IngredientSearcher from './IngredientSearcher';
 import './App.css';
 
 const CHECKBOX_OPTIONS = {
@@ -22,7 +23,6 @@ function App() {
 
   const [analysisResult, setAnalysisResult] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  
   const [activeTab, setActiveTab] = useState('analyzer');
 
   const handleCheckboxChange = (category, item) => {
@@ -72,6 +72,12 @@ function App() {
         >
           🧑‍🍳 안전 메뉴 추천
         </button>
+        <button 
+          className={`tab-button ${activeTab === 'search' ? 'active' : ''}`}
+          onClick={() => setActiveTab('search')}
+        >
+          🔍 성분 검색
+        </button>
       </div>
 
       
@@ -107,6 +113,10 @@ function App() {
         <MenuRecommender 
           userSettings={userSettingsData}
         />
+      )}
+
+      {activeTab === 'search' && (
+        <IngredientSearcher />
       )}
 
       <AnalysisModal
