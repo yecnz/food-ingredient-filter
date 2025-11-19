@@ -20,7 +20,7 @@ const ANALYSIS_TIPS = [
 // Google Search를 이용한 Gemini API 호출 함수
 async function fetchGeminiResponse(query, systemPrompt) {
     // API 키는 Canvas 환경에서 자동으로 제공되므로 빈 문자열로 둡니다.
-    const apiKey = "AIzaSyCxqUoUqpS7pbe3o251HmgXlrZ9Q_D4VNM"; 
+    const apiKey = ""; 
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
     const payload = {
         contents: [{ parts: [{ text: query }] }],
