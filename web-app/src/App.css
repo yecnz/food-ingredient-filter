@@ -571,3 +571,19 @@ section {
     font-size: 0.9rem;
     color: #888;
 }
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* 화면 크기에 맞는 레이아웃 제공 */
+@media (max-width: 768px) {
+  .result-card {
+    width: 100%;
+  }
+}
