@@ -726,7 +726,6 @@ section {
   100% { transform: rotate(360deg); }
 }
 
-/* 모바일 반응형 */
 @media (max-width: 768px) {
   .App {
     padding: 10px;
@@ -749,4 +748,45 @@ section {
   .search-input-area {
     flex-direction: column;
   }
+}
+
+.search-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+}
+
+.analysis-animation-placeholder {
+  font-size: 3em;
+  margin-bottom: 15px;
+}
+
+.tip-box {
+  margin-top: 15px;
+  padding: 15px;
+  border-left: 5px solid #bac0c7;
+  background-color: #efefef;
+  border-radius: 4px;
+  max-width: 80%;
+  text-align: center;
+}
+
+.current-tip {
+  font-size: 0.95em;
+  color: #333;
+  font-style: italic;
+  line-height: 1.4;
+  opacity: 0;
+  animation: fadeInOut 3.5s ease-in-out infinite; 
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
 }
