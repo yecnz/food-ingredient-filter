@@ -60,16 +60,17 @@ function App() {
   return (
     <div className="App" style={{ position: 'relative', minHeight: '100vh' }}>
       
-      <header style={{ position: 'relative', textAlign: 'center', padding: '10px 0' }}>
-        <h1>이건 먹어두대~ 🍎 🍜 🍤</h1>
-        
+      <header style={{ position: 'relative', textAlign: 'center', padding: '15px 0' }}>
+        <h1 style={{ margin: '10px 0 0 0', fontSize: '40px' }}>
+            이건 먹어두대~ 🍎 🍜 🍤
+        </h1>
         {!showBookmark && (
             <button 
                 onClick={() => setShowBookmark(true)}
                 style={{
                     position: 'absolute',
-                    top: '20px',
-                    right: '20px',
+                    top: '10px',
+                    right: '10px',
                     backgroundColor: 'white',
                     border: '1px solid #ddd',
                     borderRadius: '20px',

@@ -131,10 +131,15 @@ function AnalysisModal({ show, onClose, results, checkedIngredients }) {
                         })}
                     </div>
 
-                    <div style={{ marginBottom: '10px' }}>
+                    <div style={{ 
+                        marginTop: '40px',      // 위쪽 여백을 40px로 늘림 (결과와 떨어뜨림)
+                        marginBottom: '20px',   
+                        maxWidth: '400px',      // 가로 너비를 350px로 제한 (좁게 만듦)
+                        marginLeft: 'auto',     // 왼쪽 자동 여백 (가운데 정렬)
+                        marginRight: 'auto'     // 오른쪽 자동 여백 (가운데 정렬)
+                    }}>
                         <BookmarkForm analysisResult={summaryForBookmark} />
                     </div>
-
                     <button 
                         onClick={onClose}
                         className="analyze-button"

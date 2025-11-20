@@ -30,10 +30,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
-    credentials: true
+  origin: true,
+  credentials: true
 }));
+
 app.use(express.json());
 
 app.post('/upload', upload.single('image'), (req, res) => {

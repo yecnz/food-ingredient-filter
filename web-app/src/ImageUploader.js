@@ -8,20 +8,39 @@ function getCroppedImg(image, crop, fileName) {
     const canvas = document.createElement('canvas');
     const scaleX = image.naturalWidth / image.width;
     const scaleY = image.naturalHeight / image.height;
-    canvas.width = crop.width;
-    canvas.height = crop.height;
+
+    const screenBuffer = 20; 
+    
+    const bufferY = screenBuffer * scaleY;
+    const bufferX = screenBuffer * scaleX;
+
+    const cropY = Math.max(0, (crop.y * scaleY) - bufferY);
+    const cropX = Math.max(0, (crop.x * scaleX) - bufferX);
+
+    const originalBottom = (crop.y + crop.height) * scaleY;
+    const newBottom = Math.min(image.naturalHeight, originalBottom + bufferY);
+    const cropHeight = newBottom - cropY; 
+    const originalRight = (crop.x + crop.width) * scaleX;
+    const newRight = Math.min(image.naturalWidth, originalRight + bufferX);
+    const cropWidth = newRight - cropX;
+
+    canvas.width = cropWidth;
+    canvas.height = cropHeight;
+
     const ctx = canvas.getContext('2d');
+
+    ctx.imageSmoothingQuality = 'high';
 
     ctx.drawImage(
         image,
-        crop.x * scaleX,
-        crop.y * scaleY,
-        crop.width * scaleX,
-        crop.height * scaleY,
+        cropX,
+        cropY,
+        cropWidth,
+        cropHeight,
         0,
         0,
-        crop.width,
-        crop.height
+        cropWidth,
+        cropHeight
     );
 
     return new Promise((resolve, reject) => {
@@ -33,7 +52,7 @@ function getCroppedImg(image, crop, fileName) {
             blob.name = fileName;
             const file = new File([blob], fileName, { type: blob.type });
             resolve(file);
-        }, 'image/jpeg');
+        }, 'image/jpeg', 1.0);
     });
 }
 
@@ -62,7 +81,7 @@ function ImageUploader({ onUploadSuccess, userSettings }) {
             setIsCropModalOpen(true); 
             
             setCrop(centerCrop(
-                makeAspectCrop({ unit: '%', width: 50 }, 1, 1, 1),
+                makeAspectCrop({ unit: '%', width: 90 }, 1, 1, 1),
                 1,
                 1
             ));
@@ -108,7 +127,7 @@ function ImageUploader({ onUploadSuccess, userSettings }) {
             formData.append('image', croppedImageFile);
             formData.append('settings', JSON.stringify(userSettings));
             
-            const response = await fetch('http://localhost:5001/upload', {
+            const response = await fetch('https://mogododae-server.ngrok.app/upload', {
                 method: 'POST',
                 body: formData,
             });
@@ -126,7 +145,7 @@ function ImageUploader({ onUploadSuccess, userSettings }) {
 
         } catch (error) {
             onUploadSuccess([
-                { status: 'danger', type: '통신 오류', ingredients: [`Node.js 서버(5001번)가 켜져 있는지 확인하세요.`] }
+                { status: 'danger', type: '통신 오류', ingredients: [`서버 연결 실패: ${error.message}`] }
             ]);
         } finally {
             setIsUploading(false);
@@ -160,7 +179,7 @@ function ImageUploader({ onUploadSuccess, userSettings }) {
                 </>
             )}
 
-{croppedImagePreview && (
+            {croppedImagePreview && (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
                     <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>선택된 이미지 미리보기:</p>
                     
@@ -202,7 +221,7 @@ function ImageUploader({ onUploadSuccess, userSettings }) {
                                 <img 
                                     ref={imgRef}
                                     src={originalImageSrc} 
-                                    style={{ maxHeight: '50vh' }}
+                                    style={{ maxHeight: '50vh', display: 'block', maxWidth: '100%' }}
                                     alt="Crop target" 
                                 />
                             </ReactCrop>
