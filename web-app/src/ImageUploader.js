@@ -160,21 +160,31 @@ function ImageUploader({ onUploadSuccess, userSettings }) {
                 </>
             )}
 
-            {croppedImagePreview && (
-                <>
-                    <p style={{ fontWeight: 'bold' }}>선택된 이미지 미리보기:</p>
+{croppedImagePreview && (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
+                    <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>선택된 이미지 미리보기:</p>
+                    
                     <img 
                         src={croppedImagePreview} 
                         alt="Cropped Preview" 
-                        style={{ maxWidth: '100%', maxHeight: '200px', border: '1px solid #ddd', borderRadius: '4px' }}
+                        style={{ 
+                            maxWidth: '100%', 
+                            maxHeight: '200px', 
+                            border: '1px solid #ddd', 
+                            borderRadius: '4px',
+                            marginBottom: '15px'
+                        }}
                     />
-                    <button onClick={handleUpload} disabled={isUploading} className="analyze-button">
-                        {isUploading ? '분석 중...' : '선택 영역 분석하기'}
-                    </button>
-                    <button onClick={handleClearImage} disabled={isUploading} className="change-image-button">
-                        다른 이미지 선택
-                    </button>
-                </>
+
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <button onClick={handleUpload} disabled={isUploading} className="analyze-button">
+                            {isUploading ? '분석 중...' : '선택 영역 분석하기'}
+                        </button>
+                        <button onClick={handleClearImage} disabled={isUploading} className="change-image-button">
+                            다른 이미지 선택
+                        </button>
+                    </div>
+                </div>
             )}
 
             {isCropModalOpen && (
