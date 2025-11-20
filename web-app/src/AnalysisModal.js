@@ -1,6 +1,8 @@
 // web-app/src/AnalysisModal.js 
+
 import React, { useState } from 'react';
 import { ingredientInfo } from './ingredientInfo';
+import BookmarkForm from './BookmarkForm';
 
 function AnalysisModal({ show, onClose, results, checkedIngredients }) {
     
@@ -11,6 +13,13 @@ function AnalysisModal({ show, onClose, results, checkedIngredients }) {
     }
 
     const userCheckedAllergens = checkedIngredients || [];
+
+    const summaryForBookmark = {
+        status: results.some(r => r.status === 'danger') ? 'danger' 
+              : results.some(r => r.status === 'warning') ? 'warning' 
+              : 'safe',
+        ingredients: results.flatMap(r => r.ingredients || [])
+    };
 
     const handleIngredientClick = (ingredientName) => {
         const info = ingredientInfo[ingredientName];
@@ -122,10 +131,14 @@ function AnalysisModal({ show, onClose, results, checkedIngredients }) {
                         })}
                     </div>
 
+                    <div style={{ marginBottom: '10px' }}>
+                        <BookmarkForm analysisResult={summaryForBookmark} />
+                    </div>
+
                     <button 
                         onClick={onClose}
                         className="analyze-button"
-                        style={{marginTop: '20px'}}
+                        style={{marginTop: '10px'}}
                     >
                         닫기
                     </button>
