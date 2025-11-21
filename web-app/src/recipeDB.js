@@ -3391,5 +3391,465 @@ export const recipeDB = [
     temperature: "시원",
     form: "가벼운",
     style: "채소"
+  },
+  {
+    title: "매콤 해물 순두부찌개",
+    tags: ["국물", "해산물", "매운", "뜨거운"],
+    allergens: ["대두", "새우", "조개"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "해산물"
+  },
+  {
+    title: "얼큰 소고기 육개장",
+    tags: ["국물", "소고기", "매운", "뜨거운"],
+    allergens: ["대두", "쇠고기", "밀"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "돼지 김치찌개",
+    tags: ["국물", "돼지고기", "매운", "뜨거운"],
+    allergens: ["대두", "돼지고기"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "불닭볶음면 (치즈 추가)",
+    tags: ["면", "닭고기", "매운", "뜨거운"],
+    allergens: ["밀", "대두", "닭고기", "우유"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "면",
+    style: "고기"
+  },
+  {
+    title: "매운 닭볶음탕",
+    tags: ["국물", "닭고기", "매운", "뜨거운"],
+    allergens: ["대두", "닭고기"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "고기"
+  },
+  {
+    title: "빨간 떡볶이",
+    tags: ["분식", "간편식", "매운", "뜨거운"],
+    allergens: ["밀", "대두", "계란"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "돌솥 비빔밥",
+    tags: ["비빔밥", "고기", "계란"],
+    allergens: ["대두", "밀", "계란", "쇠고기"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "고기"
+  },
+  {
+    title: "매콤 해물 순두부찌개",
+    tags: ["국물", "해산물", "매운", "뜨거운"],
+    allergens: ["대두", "새우", "조개"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "해산물"
+  },
+  {
+    title: "얼큰 소고기 육개장",
+    tags: ["국물", "소고기", "매운", "뜨거운"],
+    allergens: ["대두", "쇠고기", "밀"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "돼지 김치찌개",
+    tags: ["국물", "돼지고기", "매운", "뜨거운"],
+    allergens: ["대두", "돼지고기"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "불닭볶음면 (치즈 추가)",
+    tags: ["면", "닭고기", "매운", "뜨거운"],
+    allergens: ["밀", "대두", "닭고기", "우유"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "면",
+    style: "고기"
+  },
+  {
+    title: "매운 닭볶음탕",
+    tags: ["국물", "닭고기", "매운", "뜨거운"],
+    allergens: ["대두", "닭고기"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "고기"
+  },
+  {
+    title: "빨간 떡볶이",
+    tags: ["분식", "간편식", "매운", "뜨거운"],
+    allergens: ["밀", "대두", "계란"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "미역국 (소고기)",
+    tags: ["국물", "담백", "따뜻", "소고기"],
+    allergens: ["쇠고기", "대두"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "가츠동 (일본식 돈가스 덮밥)",
+    tags: ["밥", "돈가스", "달콤짭짤", "따뜻"],
+    allergens: ["밀", "계란", "돼지고기", "대두"],
+    category: "일식",
+    flavor: "달콤짭짤",
+    temperature: "따뜻",
+    form: "밥",
+    style: "고기"
+  },
+  {
+    title: "토마토 스파게티",
+    tags: ["면", "양식", "상큼", "따뜻"],
+    allergens: ["밀", "토마토"],
+    category: "양식",
+    flavor: "상큼",
+    temperature: "따뜻",
+    form: "면",
+    style: "채소"
+  },
+  {
+    title: "모짜렐라 샌드위치",
+    tags: ["가벼운", "치즈", "담백", "시원"],
+    allergens: ["밀", "우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "아이스 아메리카노",
+    tags: ["음료", "커피", "시원", "가벼운"],
+    allergens: [],
+    category: "기타",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "쌀국수 (닭고기)",
+    tags: ["면", "국물", "아시안", "담백", "뜨겁"],
+    allergens: ["닭고기", "대두"],
+    category: "아시안",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "망고 스무디",
+    tags: ["음료", "과일", "상큼", "시원"],
+    allergens: ["우유"],
+    category: "기타",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "연어 샐러드",
+    tags: ["샐러드", "연어", "가벼운", "시원"],
+    allergens: ["생선", "견과류"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "아구찜",
+    tags: ["찜", "해산물", "매운", "뜨거운"],
+    allergens: ["생선", "콩"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "쭈꾸미 볶음",
+    tags: ["볶음", "해산물", "매운", "뜨거운"],
+    allergens: ["밀", "대두", "쭈꾸미"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "뼈다귀 해장국",
+    tags: ["국물", "돼지고기", "매운", "뜨거운"],
+    allergens: ["돼지고기", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "닭발 볶음",
+    tags: ["안주", "닭고기", "매운", "따뜻"],
+    allergens: ["닭고기", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "따뜻",
+    form: "가벼운",
+    style: "고기"
+  },
+  {
+    title: "불족발",
+    tags: ["족발", "돼지고기", "매운", "따뜻"],
+    allergens: ["돼지고기", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "따뜻",
+    form: "가벼운",
+    style: "고기"
+  },
+  {
+    title: "매운 갈비찜",
+    tags: ["찜", "돼지고기", "매운", "뜨거운"],
+    allergens: ["돼지고기", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "고기"
+  },
+  {
+    title: "오징어 볶음",
+    tags: ["볶음", "해산물", "매운", "따뜻"],
+    allergens: ["오징어", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "따뜻",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "낙지 덮밥",
+    tags: ["밥", "해산물", "매운", "따뜻"],
+    allergens: ["낙지", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "따뜻",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "해물찜",
+    tags: ["찜", "해산물", "매운", "뜨거운"],
+    allergens: ["새우", "조개", "밀"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "매운 홍합탕",
+    tags: ["국물", "해산물", "매운", "뜨거운"],
+    allergens: ["조개"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "해산물"
+  },
+  {
+    title: "부대찌개",
+    tags: ["국물", "소세지", "매운", "뜨거운"],
+    allergens: ["돼지고기", "쇠고기", "밀", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "제육 볶음",
+    tags: ["볶음", "돼지고기", "매운", "따뜻"],
+    allergens: ["돼지고기", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "따뜻",
+    form: "밥",
+    style: "고기"
+  },
+  {
+    title: "고추장찌개",
+    tags: ["국물", "돼지고기", "매운", "뜨거운"],
+    allergens: ["돼지고기", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "고기"
+  },
+  {
+    title: "비빔 냉면",
+    tags: ["면", "매운", "시원"],
+    allergens: ["밀", "메밀", "계란"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "시원",
+    form: "면",
+    style: "채소"
+  },
+  {
+    title: "쫄면",
+    tags: ["면", "매운", "시원", "채소"],
+    allergens: ["밀", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "시원",
+    form: "면",
+    style: "채소"
+  },
+  {
+    title: "매운 떡볶이",
+    tags: ["분식", "간편식", "매운", "뜨거운"],
+    allergens: ["밀", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "라볶이",
+    tags: ["면", "떡", "매운", "뜨거운"],
+    allergens: ["밀", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "면",
+    style: "채소"
+  },
+  {
+    title: "김치 칼국수",
+    tags: ["면", "국물", "매운", "뜨거운"],
+    allergens: ["밀", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "채소"
+  },
+  {
+    title: "짬뽕 순두부",
+    tags: ["국물", "해산물", "매운", "뜨거운"],
+    allergens: ["대두", "새우", "오징어"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "해산물"
+  },
+  {
+    title: "매운 순대볶음",
+    tags: ["순대", "안주", "매운", "따뜻"],
+    allergens: ["돼지고기", "대두", "밀"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "따뜻",
+    form: "가벼운",
+    style: "고기"
+  },
+  {
+    title: "매운 어묵탕",
+    tags: ["국물", "어묵", "해산물", "매운", "뜨거운"],
+    allergens: ["밀", "생선", "새우"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "국물",
+    style: "해산물"
+  },
+  {
+    title: "닭갈비",
+    tags: ["철판", "닭고기", "매운", "뜨거운"],
+    allergens: ["닭고기", "대두", "밀"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "고기"
+  },
+  {
+    title: "열무 비빔국수",
+    tags: ["면", "채소", "매운", "시원"],
+    allergens: ["밀", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "시원",
+    form: "면",
+    style: "채소"
+  },
+  {
+    title: "김치볶음밥",
+    tags: ["밥", "김치", "매운", "따뜻"],
+    allergens: ["대두", "계란"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "따뜻",
+    form: "밥",
+    style: "채소"
+  },
+  {
+    title: "갈치조림",
+    tags: ["조림", "생선", "매운", "뜨거운"],
+    allergens: ["생선", "대두"],
+    category: "한식",
+    flavor: "매운",
+    temperature: "뜨겁",
+    form: "밥",
+    style: "해산물"
   }
   ];
