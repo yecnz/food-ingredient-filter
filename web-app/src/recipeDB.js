@@ -3851,5 +3851,785 @@ export const recipeDB = [
     temperature: "뜨겁",
     form: "밥",
     style: "해산물"
-  }
+  },
+  {
+    title: "유자 폰즈 광어회 샐러드",
+    tags: ["샐러드", "회", "상큼", "시원"],
+    allergens: ["생선", "대두", "밀"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "해초 초무침 (스노모노)",
+    tags: ["초절임", "해초", "상큼", "시원"],
+    allergens: [],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "오이 초절임 (갓파마키)",
+    tags: ["초밥", "채소", "상큼", "시원"],
+    allergens: ["밀", "대두"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "밥",
+    style: "채소"
+  },
+  {
+    title: "타코 와사비 군함",
+    tags: ["문어", "와사비", "상큼", "시원"],
+    allergens: ["문어"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "참치 타타키 (유자 폰즈)",
+    tags: ["참치", "타타키", "상큼", "시원"],
+    allergens: ["생선", "대두", "밀"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "아마에비 초밥",
+    tags: ["초밥", "새우", "상큼", "시원"],
+    allergens: ["새우"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "매실 오차즈케",
+    tags: ["밥", "국물", "매실", "상큼", "따뜻"],
+    allergens: ["생선", "대두"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "따뜻",
+    form: "밥",
+    style: "채소"
+  },
+  {
+    title: "참마 소바 (토로로 소바)",
+    tags: ["면", "참마", "상큼", "시원"],
+    allergens: ["밀", "메밀", "참마"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "면",
+    style: "채소"
+  },
+  {
+    title: "가리비 카르파치오 (라임 소스)",
+    tags: ["가리비", "회", "상큼", "시원"],
+    allergens: ["조개"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "문어 초회",
+    tags: ["문어", "초절임", "상큼", "시원"],
+    allergens: ["문어"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "아오리이카 (흰오징어) 초밥",
+    tags: ["초밥", "오징어", "상큼", "시원"],
+    allergens: ["오징어"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "아카미 (참치 속살) 초밥",
+    tags: ["초밥", "참치", "상큼", "시원"],
+    allergens: ["생선"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "모즈쿠(큰실말) 초무침",
+    tags: ["해초", "초절임", "상큼", "시원"],
+    allergens: [],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "새콤한 해산물 마리네이드",
+    tags: ["해산물", "절임", "상큼", "시원"],
+    allergens: ["새우", "오징어"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "히라메 (광어) 초밥",
+    tags: ["초밥", "광어", "상큼", "시원"],
+    allergens: ["생선"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "도미 껍질 숙회 (폰즈 소스)",
+    tags: ["숙회", "생선", "상큼", "시원"],
+    allergens: ["생선", "대두", "밀"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "청어 초절임",
+    tags: ["초절임", "생선", "상큼", "시원"],
+    allergens: ["생선"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "이와시 (정어리) 생강 초밥",
+    tags: ["초밥", "생선", "상큼", "시원"],
+    allergens: ["생선"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "채소 절임 모듬 (츠케모노)",
+    tags: ["절임", "채소", "상큼", "시원"],
+    allergens: [],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "채소"
+  },
+  {
+    title: "김말이 초밥 (네기토로)",
+    tags: ["초밥", "참치", "상큼", "시원"],
+    allergens: ["생선"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "밥",
+    style: "해산물"
+  },
+  {
+    title: "아오모노 (푸른 생선) 초회",
+    tags: ["생선", "초절임", "상큼", "시원"],
+    allergens: ["생선"],
+    category: "일식",
+    flavor: "상큼",
+    temperature: "시원",
+    form: "가벼운",
+    style: "해산물"
+  },
+  {
+    title: "맑은 곰탕",
+    tags: ["곰탕", "사골", "맑은", "보양식"],
+    allergens: ["소고기"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "전복죽",
+    tags: ["전복", "죽", "보양", "해산물"],
+    allergens: ["전복", "참기름"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "일본식 흰 살 생선 맑은 장국 (스이모노)",
+    tags: ["장국", "맑은", "생선", "일식"],
+    allergens: ["생선"],
+    category: "일식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "베트남 닭고기 쌀국수 (포 가)",
+    tags: ["쌀국수", "닭고기", "숙주", "베트남"],
+    allergens: ["닭고기"],
+    category: "아시안",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "면 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "닭개장",
+    tags: ["닭개장", "닭고기", "맑은"],
+    allergens: ["닭고기"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "삼계탕",
+    tags: ["삼계탕", "닭고기", "인삼", "보양"],
+    allergens: ["닭고기"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "새우 완탕면",
+    tags: ["완탕면", "새우", "중식"],
+    allergens: ["새우", "밀"],
+    category: "중식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "버섯 들깨 칼국수",
+    tags: ["칼국수", "들깨", "버섯", "건강"],
+    allergens: ["밀"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "맑은 순두부찌개",
+    tags: ["순두부", "맑은", "해물", "건강"],
+    allergens: ["대두", "새우"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "중국식 맑은 해물탕",
+    tags: ["해물탕", "맑은", "해산물", "중식"],
+    allergens: ["새우", "오징어"],
+    category: "중식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "일본식 우동 (유부)",
+    tags: ["우동", "유부", "맑은 국물", "일식"],
+    allergens: ["밀", "대두"],
+    category: "일식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "닭 한 마리",
+    tags: ["닭", "칼국수", "맑은", "온 가족"],
+    allergens: ["닭고기", "밀"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "도가니탕",
+    tags: ["도가니", "소고기", "보양식", "맑은"],
+    allergens: ["소고기"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "태국식 닭고기 맑은 수프 (똠 카 가이 순한 맛)",
+    tags: ["수프", "닭고기", "코코넛", "태국"],
+    allergens: ["닭고기"],
+    category: "아시안",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "파스타 인 브로도",
+    tags: ["파스타", "맑은 수프", "이탈리아", "건강"],
+    allergens: ["밀", "소고기"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "쇠고기 무국",
+    tags: ["소고기", "무", "맑은", "집밥"],
+    allergens: ["소고기"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "대구 맑은 지리",
+    tags: ["대구", "지리", "해산물", "맑은"],
+    allergens: ["생선"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "북엇국",
+    tags: ["북어", "맑은", "해장", "건강"],
+    allergens: ["북어"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "닭고기 야채 수프",
+    tags: ["수프", "닭고기", "야채", "건강"],
+    allergens: ["닭고기"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "뜨겁",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "흰쌀밥과 구운 생선",
+    tags: ["흰밥", "생선", "가정식", "맑은"],
+    allergens: ["생선"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "오트밀 죽",
+    tags: ["오트밀", "죽", "야채", "건강식"],
+    allergens: ["밀"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "프렌치 토스트",
+    tags: ["토스트", "빵", "계란", "브런치"],
+    allergens: ["밀", "계란", "우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "두부조림",
+    tags: ["두부", "조림", "가정식", "건강"],
+    allergens: [],
+    category: "한식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "감자 옹심이",
+    tags: ["옹심이", "감자", "강원도", "맑은"],
+    allergens: ["밀"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "채소 스프",
+    tags: ["스프", "야채", "건강", "가벼운"],
+    allergens: ["채소"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "일본식 계란찜 (차완무시)",
+    tags: ["계란찜", "일식", "부드러운", "해산물(선택)"],
+    allergens: ["계란"],
+    category: "일식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "돼지고기 샤브샤브",
+    tags: ["샤브샤브", "돼지고기", "야채", "맑은"],
+    allergens: ["돼지고기"],
+    category: "아시안",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "국물 요리",
+    style: "고기 중심 요리"
+},
+{
+    title: "닭 가슴살 스테이크",
+    tags: ["닭가슴살", "스테이크", "건강", "단백질"],
+    allergens: ["닭고기"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "가벼운 한 끼",
+    style: "고기 중심 요리"
+},
+{
+    title: "찐 만두",
+    tags: ["만두", "찜", "간단", "중식"],
+    allergens: ["밀", "고기"],
+    category: "중식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "가벼운 한 끼",
+    style: "고기 중심 요리"
+},
+{
+    title: "버섯 리조또",
+    tags: ["리조또", "버섯", "이탈리아", "편안한"],
+    allergens: ["우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "흰 살 생선 구이",
+    tags: ["생선", "구이", "담백", "건강"],
+    allergens: ["생선"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "연근 튀김",
+    tags: ["연근", "튀김", "사이드", "건강"],
+    allergens: ["연근", "밀"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "크림 수프",
+    tags: ["수프", "크림", "양식", "부드러운"],
+    allergens: ["우유", "밀"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "계란 볶음밥",
+    tags: ["볶음밥", "계란", "간단", "중식"],
+    allergens: ["계란"],
+    category: "중식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "야채죽",
+    tags: ["죽", "건강", "부드러운"],
+    allergens: ["채소"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "치즈 오믈렛",
+    tags: ["오믈렛", "치즈", "계란", "브런치"],
+    allergens: ["계란", "우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "버섯 된장찌개",
+    tags: ["된장찌개", "버섯", "가정식"],
+    allergens: ["대두"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "따뜻",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "콩국수",
+    tags: ["콩국수", "콩", "시원", "여름"],
+    allergens: ["대두", "밀"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "냉우동",
+    tags: ["우동", "냉면", "시원", "여름"],
+    allergens: ["밀"],
+    category: "일식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "냉제비",
+    tags: ["수제비", "냉수제비", "시원", "담백"],
+    allergens: ["밀"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "아보카도 명란 비빔밥",
+    tags: ["아보카도", "명란", "비빔밥", "건강"],
+    allergens: ["명란", "계란"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "밥 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "냉채 족발",
+    tags: ["족발", "냉채", "시원", "중식(퓨전)"],
+    allergens: ["돼지고기"],
+    category: "중식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "고기 중심 요리"
+},
+{
+    title: "크루아상 샌드위치",
+    tags: ["샌드위치", "크루아상", "간편"],
+    allergens: ["밀", "우유", "참치"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "고기 중심 요리"
+},
+{
+    title: "에그 샌드위치",
+    tags: ["샌드위치", "계란", "간단", "아침"],
+    allergens: ["밀", "계란", "우유", "대두"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "닭가슴살 샐러드",
+    tags: ["샐러드", "닭가슴살", "다이어트", "채소"],
+    allergens: ["닭고기"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "고기 중심 요리"
+},
+{
+    title: "냉 파스타 샐러드 (오일 드레싱)",
+    tags: ["파스타", "샐러드", "오일", "가벼운"],
+    allergens: ["밀"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "차가운 두부 샐러드 (오리엔탈)",
+    tags: ["두부", "샐러드", "건강", "채소"],
+    allergens: ["대두"],
+    category: "아시안",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "베이글 (크림치즈)",
+    tags: ["베이글", "크림치즈", "아침", "간편"],
+    allergens: ["밀", "우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "토마토 카프레제",
+    tags: ["카프레제", "토마토", "모짜렐라", "이탈리아"],
+    allergens: ["우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "콜드 파스타 (봉골레 스타일)",
+    tags: ["파스타", "봉골레", "해산물", "시원"],
+    allergens: ["밀", "조개"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "훈제 오리 샐러드",
+    tags: ["오리", "샐러드", "훈제", "건강"],
+    allergens: ["오리"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "고기 중심 요리"
+},
+{
+    title: "차가운 스프 (비시스와즈)",
+    tags: ["스프", "감자", "차가운", "프랑스"],
+    allergens: ["우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "오이 냉국",
+    tags: ["오이", "냉국", "시원", "가정식"],
+    allergens: ["오이"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "국물 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "터키 샌드위치",
+    tags: ["샌드위치", "닭고기", "터키", "다이어트"],
+    allergens: ["밀", "닭고기", "우유"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "고기 중심 요리"
+},
+{
+    title: "냉국수 (맑은 멸치육수)",
+    tags: ["국수", "냉면", "시원", "멸치"],
+    allergens: ["밀"],
+    category: "한식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "면 요리",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "아보카도 토스트",
+    tags: ["아보카도", "토스트", "브런치", "건강"],
+    allergens: ["밀"],
+    category: "양식",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+},
+{
+    title: "연두부 샐러드",
+    tags: ["연두부", "샐러드", "가벼운", "건강"],
+    allergens: ["대두"],
+    category: "아시안",
+    flavor: "담백",
+    temperature: "시원",
+    form: "가벼운 한 끼",
+    style: "채소·가벼운 식단"
+}
   ];
