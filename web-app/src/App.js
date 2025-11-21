@@ -36,7 +36,41 @@ function App() {
       return { ...prev, [category]: newItems };
     });
   };
+  const handleSelectAll = (category) => {
+    const allItems = CHECKBOX_OPTIONS[category];
+    const currentItems = checkedItems[category];
+    
+    // 이미 다 선택되어 있는지 확인
+    const isAllSelected = allItems.every(item => currentItems.includes(item));
 
+    setCheckedItems(prev => ({
+      ...prev,
+      // 다 선택되어 있으면 -> 싹 비우기 ([]), 아니면 -> 꽉 채우기 (allItems)
+      [category]: isAllSelected ? [] : allItems 
+    }));
+  };
+
+  const handleGlobalSelectAll = () => {
+    const allCategories = Object.keys(CHECKBOX_OPTIONS); 
+    
+    // 모든 카테고리가 다 꽉 차 있는지 검사
+    const isTotalSelected = allCategories.every(category => {
+        return CHECKBOX_OPTIONS[category].every(item => checkedItems[category].includes(item));
+    });
+
+    if (isTotalSelected) {
+        // 이미 다 선택됨 -> 싹 다 비우기
+        setCheckedItems({ "알레르기": [], "기타기피": [], "비건": [] });
+    } else {
+        // 하나라도 빈 게 있음 -> 싹 다 채우기
+        setCheckedItems({
+            "알레르기": [...CHECKBOX_OPTIONS["알레르기"]],
+            "기타기피": [...CHECKBOX_OPTIONS["기타기피"]],
+            "비건": [...CHECKBOX_OPTIONS["비건"]]
+        });
+    }
+  };
+  
   const userSettingsData = {
     알레르기: checkedItems["알레르기"],
     기타기피: checkedItems["기타기피"],
@@ -60,17 +94,16 @@ function App() {
   return (
     <div className="App" style={{ position: 'relative', minHeight: '100vh' }}>
       
-      <header style={{ position: 'relative', textAlign: 'center', padding: '15px 0' }}>
-        <h1 style={{ margin: '10px 0 0 0', fontSize: '40px' }}>
-            이건 먹어두대~ 🍎 🍜 🍤
-        </h1>
+      <header style={{ position: 'relative', textAlign: 'center', padding: '10px 0' }}>
+        <h1>이건 먹어두대~ 🍎 🍜 🍤</h1>
+        
         {!showBookmark && (
             <button 
                 onClick={() => setShowBookmark(true)}
                 style={{
                     position: 'absolute',
-                    top: '10px',
-                    right: '10px',
+                    top: '20px',
+                    right: '20px',
                     backgroundColor: 'white',
                     border: '1px solid #ddd',
                     borderRadius: '20px',
@@ -118,14 +151,37 @@ function App() {
             <>
               <section>
                 <h2>1. 필터링 성분 설정</h2>
+                <div style={{ textAlign: 'left', marginBottom: '20px' }}>
+                    <button 
+                        onClick={handleGlobalSelectAll}
+                        className="global-select-btn"
+                    >
+                        전체 선택
+                    </button>
+                </div>
                 {Object.entries(CHECKBOX_OPTIONS).map(([category, items]) => (
-                  <CheckboxGroup
-                    key={category}
-                    category={category}
-                    items={items}
-                    checkedItems={checkedItems[category] || []}
-                    onChange={handleCheckboxChange}
-                  />
+                  <div key={category} style={{ position: 'relative' }}>
+                    
+                    {/* ★ [추가] 비건이 아닐 때만 '모두 선택' 버튼 표시 */ }
+                    {category !== "비건" && (
+                        <button
+                            onClick={() => handleSelectAll(category)}
+                            className="select-all-btn"
+                        >
+                            {/* 다 선택되어 있으면 '해제', 아니면 '선택' */}
+                            {items.every(i => checkedItems[category].includes(i)) 
+                                ? ' 전체 해제' 
+                                : ' 모두 선택'}
+                        </button>
+                    )}
+
+                    <CheckboxGroup
+                      category={category}
+                      items={items}
+                      checkedItems={checkedItems[category] || []}
+                      onChange={handleCheckboxChange}
+                    />
+                  </div>
                 ))}
                 <div className="current-settings">
                   현재 필터링 설정: [알레르기: {checkedItems["알레르기"].join(', ') || '없음'}] [기타: {checkedItems["기타기피"].join(', ') || '없음'}] [비건: {userSettingsData.비건 ? '활성화' : '비활성화'}]

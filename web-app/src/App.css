@@ -415,22 +415,29 @@ section {
 }
 
 .survey-back-button {
-    background-color: #f0f0f0;
-    border: 1px solid #ddd;
-    color: #555;
-    padding: 8px 15px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    float: left;
-    margin-bottom: 10px;
-    transition: background-color 0.2s ease;
+  background-color: #ffffff;   /* 깨끗한 흰색 */
+  border: 2px solid #e0e0e0;   /* 부드러운 회색 테두리 */
+  border-radius: 25px;         /* ★ 알약처럼 둥글게 */
+  padding: 8px 20px;           /* 넉넉한 여백 */
+  color: #666;                 /* 차분한 글씨색 */
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;   /* 부드러운 움직임 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
-
 .survey-back-button:hover {
-    background-color: #e0e0e0;
-    text-decoration: none;
+  border-color: #ccc;       /* 핑크색 테두리로 변신 */
+  color: #000000;              /* 글씨도 핑크색 */
+  background-color: #ffffff;   /* 연한 핑크 배경 */
+  transform: translateX(-4px); /* ⬅️ 왼쪽으로 쓱 움직이는 효과 */
+  box-shadow: 0 4px 8px rgba(184, 166, 174, 0.279);
+}
+.survey-back-button:active {
+  transform: scale(0.95);    /* 누르면 살짝 작아짐 */
 }
 
 .survey-question {
@@ -789,4 +796,344 @@ section {
   15% { opacity: 1; }
   85% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+/* AI 추천 전체 컨테이너 */
+.ai-recommend-container {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #f2f5f0; /* 아주 연한 붉은색 배경 */
+  border-radius: 15px;
+  border: 2px dashed #ccc;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.ai-recommend-container h3 {
+  color: #a04f56;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.ai-recommend-container p {
+  color: #555;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* AI 메뉴 카드들이 나열되는 영역 */
+.ai-menu-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 개별 AI 메뉴 카드 */
+.ai-menu-card {
+  background-color: white;
+  width: 100%;
+  max-width: 400px; /* 카드 최대 너비 제한 */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #eee;
+  text-align: left;
+}
+
+.ai-menu-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  border-color: #ffbd69;
+}
+
+.ai-menu-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* 해시태그 (#매콤 #국물) 스타일 */
+.ai-menu-card p {
+  margin: 0 0 10px 0;
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* 카테고리 | 맛 | 온도 정보 */
+.ai-menu-details {
+  font-size: 0.85rem !important;
+  color: #888 !important;
+  margin-bottom: 15px !important;
+  background-color: #f8f9fa;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+/* [이 메뉴 선택 및 등록] 버튼 */
+.select-menu-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #a8a6a6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.select-menu-button:hover {
+  background-color: #847875;
+}
+
+/* 처음부터 다시하기 버튼 (기존 버튼 스타일과 조화) */
+.change-image-button {
+  background-color: #b76e6e;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.change-image-button:hover {
+  background-color: #57606f;
+}
+
+/* 나타나는 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.selected-tags-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px; /* 질문과의 간격 */
+  clear: both; /* 뒤로가기 버튼과 겹치지 않게 */
+  padding-top: 10px;
+}
+
+.selected-tag {
+  background-color: rgb(255, 255, 255); 
+  color: #8f8f8f; 
+  padding: 6px 15px;
+  border-radius: 20px; /* 둥글게 */
+  font-size: 0.95rem;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  animation: popIn 0.3s ease-out; /* 뿅! 하고 나타나는 효과 */
+}
+
+/* 태그가 생길 때 귀엽게 튀어나오는 애니메이션 */
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 제외 필터 박스 */
+.user-filter-container {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.filter-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #555;
+  margin-right: 5px;
+}
+
+/* 제외 필터 태그 (회색/빨강 느낌) */
+.user-filter-tag {
+  background-color: #fbebeb; /* 연한 붉은 배경 */
+  color: #c0392b;            /* 붉은 글씨 */
+  border: 1px solid #e6b0aa;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* 박스 안쪽 필터 컨테이너 */
+.inner-filter-box {
+  background-color: rgba(255, 255, 255, 0.6); /* 반투명 흰색 */
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 25px;
+  text-align: left;
+  border: 1px solid #e0e0e0;
+}
+
+.filter-row {
+  display: flex;
+  align-items: flex-start; /* 태그가 많아지면 위쪽 정렬 */
+  margin-bottom: 12px;
+  gap: 10px;
+}
+
+.filter-row:last-child {
+  margin-bottom: 0;
+}
+
+.filter-row.center {
+  justify-content: center;
+}
+
+.filter-tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* 라벨 스타일 */
+.filter-label-danger {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #d3514d; /* 빨간색 */
+  min-width: 70px;
+  padding-top: 2px;
+}
+
+.filter-label-warning {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #d88f29; /* 주황색 */
+  min-width: 70px;
+  padding-top: 2px;
+}
+
+.filter-label-safe {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #5cb85c; /* 초록색 */
+}
+
+/* 태그 디자인 */
+.user-filter-tag {
+  font-size: 0.85rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.user-filter-tag.danger {
+  background-color: #fffefe;
+  color: #d9534f;
+  border: 1px solid #e6b0aa;
+}
+
+.user-filter-tag.warning {
+  background-color: #fffefa;
+  color: #d68910;
+  border: 1px solid #f5cba7;
+}
+
+/* 비건 전용 스타일 (초록색) */
+.filter-label-vegan {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #27ae60; /* 자연의 초록색 */
+  min-width: 70px;
+  padding-top: 2px;
+}
+
+.user-filter-tag.vegan {
+  background-color: #fbfffd; /* 아주 연한 초록 배경 */
+  color: #1e8449;            /* 진한 초록 글씨 */
+  border: 1px solid #a9dfbf; /* 초록 테두리 */
+}
+
+/* 모두 선택 버튼 예쁘게 꾸미기 */
+.select-all-btn {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff; /* 핑크색 테두리 */
+  color: #000000;            /* 핑크색 글씨 */
+  border-radius: 20px;       /* 둥글게 */
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  z-index: 10;
+}
+
+.select-all-btn:hover {
+  background-color: #ccc; /* 마우스 올리면 연한 핑크 배경 */
+  transform: translateY(-2px);
+}
+.select-all-btn:active {
+  transform: scale(0.95);    /* 누르면 살짝 작아짐 */
+}
+/* '싹 다 선택하기' 대장 버튼 */
+.global-select-btn {
+  background-color: #7d1157; /* 진한 핑크색 배경 */
+  color: white;              /* 흰색 글씨 */
+  border: none;
+  border-radius: 25px;       /* 둥글게 */
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(217, 70, 134, 0.3); /* 핑크색 그림자 */
+  transition: all 0.2s ease;
+}
+
+.global-select-btn:hover {
+  background-color: #c03570; /* 마우스 올리면 더 진하게 */
+  transform: scale(1.05);    /* 살짝 커짐 */
+}
+
+.global-select-btn:active {
+  transform: scale(0.95);    /* 누르면 살짝 작아짐 */
+}
+
+
+/* 지도 검색 버튼 (네이버 느낌의 초록색) */
+.map-search-button {
+  background-color: #03c75a; /* 네이버 그린 */
+  color: white;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 100%;
+  margin-top: 20px; /* 위쪽 박스와 간격 */
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(3, 199, 90, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-search-button:hover {
+  background-color: #02b351;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(3, 199, 90, 0.3);
 }
