@@ -10,7 +10,7 @@ const surveySteps = [
 ];
 
 const preferenceMap = {
-    '매운 맛': '매운',
+    '매운 맛': '매움',
     '담백한 맛': '담백',
     '달콤짭짤한 맛': '달콤짭짤',
     '상큼하고 가벼운 맛': '상큼',
@@ -113,14 +113,14 @@ function MenuRecommender({ userSettings }) {
             Object.entries(finalPreferences).forEach(([key, value]) => {
                 if (value === '상관없음') return;
 
-                if (key === 'category') {
-                    filteredList = filteredList.filter(recipe => recipe.category === value);
-                } 
-                else {
-                    const mapped = preferenceMap[value];
-                    if (mapped) {
-                        filteredList = filteredList.filter(recipe => recipe[key] === mapped);
+                if (key === 'flavor') {
+                    const mappedFlavor = preferenceMap[value]; 
+                    if (mappedFlavor) {
+                        filteredList = filteredList.filter(recipe => recipe.flavor === mappedFlavor);
                     }
+                } 
+                else if (key === 'category' || key === 'temperature' || key === 'form') {
+                    filteredList = filteredList.filter(recipe => recipe[key] === value);
                 }
             });
 

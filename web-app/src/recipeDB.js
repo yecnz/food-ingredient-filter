@@ -4631,5 +4631,745 @@ export const recipeDB = [
     temperature: "시원",
     form: "가벼운 한 끼",
     style: "채소·가벼운 식단"
-}
-  ];
+},
+{
+  title: "카라 미소 라멘",
+  tags: ["라멘", "매운맛", "미소", "뜨겁"],
+  allergens: ["밀", "돼지고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "탄탄멘",
+        tags: ["라멘", "땅콩", "매운맛", "중식(일식화)"],
+        allergens: ["밀", "돼지고기", "땅콩", "참깨"],
+        category: "일식",
+        flavor: "매움",
+        temperature: "뜨겁고 얼큰한",
+        form: "면 요리",
+        style: "고기 중심 요리"
+},
+{
+  title: "카라이 츠케멘",
+  tags: ["츠케멘", "찍어먹는", "매운", "시원(면)"],
+  allergens: ["밀", "생선", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "마파두부 덮밥 (일본식)",
+  tags: ["덮밥", "마파", "매콤", "중식(일식화)"],
+  allergens: ["대두", "돼지고기"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "밥 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "아카이 키츠네 우동 (매운 유부우동)",
+  tags: ["우동", "유부", "매운", "뜨겁"],
+  allergens: ["밀", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 해물 야키소바",
+  tags: ["야키소바", "볶음면", "매운", "해물"],
+  allergens: ["밀", "새우", "오징어"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "와사비 타코 와사비 군함말이",
+  tags: ["군함말이", "타코", "와사비", "매콤"],
+  allergens: ["밀", "문어"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "차갑고 시원한",
+  form: "가벼운 한 끼",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 참치 마끼",
+  tags: ["마끼", "참치", "매운", "시원"],
+  allergens: ["참치"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "차갑고 시원한",
+  form: "가벼운 한 끼",
+  style: "고기 중심 요리"
+},
+{
+  title: "명란 아보카도동",
+  tags: ["덮밥", "명란", "아보카도"],
+  allergens: ["명란", "계란"],
+  category: "일식",
+  flavor: "담백",
+  temperature: "차갑고 시원한",
+  form: "밥 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매콤한 치킨 난반",
+  tags: ["난반", "닭고기", "튀김", "매콤"],
+  allergens: ["닭고기", "밀", "계란"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "가벼운 한 끼",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 돼지고기 쇼가야끼",
+  tags: ["쇼가야끼", "돼지고기", "생강", "매콤"],
+  allergens: ["돼지고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "밥 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 가츠동",
+  tags: ["가츠동", "돈까스", "매운", "덮밥"],
+  allergens: ["돼지고기", "밀", "계란"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "밥 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 돈코츠 라멘",
+  tags: ["라멘", "돈코츠", "매운", "뜨겁"],
+  allergens: ["밀", "돼지고기"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 스키야키 나베",
+  tags: ["스키야키", "나베", "매운", "국물"],
+  allergens: ["소고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매콤 해산물 나베",
+  tags: ["나베", "해산물", "매콤", "국물"],
+  allergens: ["새우", "오징어"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "김치 나베 우동",
+  tags: ["나베", "우동", "김치", "퓨전"],
+  allergens: ["밀", "돼지고기"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 타코야키",
+  tags: ["타코야키", "문어", "간식", "매콤"],
+  allergens: ["밀", "문어", "계란"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "가벼운 한 끼",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 닭꼬치 (야키토리)",
+  tags: ["야키토리", "꼬치", "닭고기", "매콤"],
+  allergens: ["닭고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "가벼운 한 끼",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 소스의 오코노미야키",
+  tags: ["오코노미야키", "부침", "매콤", "가벼운"],
+  allergens: ["밀", "계란", "돼지고기"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "가벼운 한 끼",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 명란 파스타 (와풍 파스타)",
+  tags: ["파스타", "명란", "퓨전", "매콤"],
+  allergens: ["밀", "명란"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 돈지루 (돼지고기 미소 장국)",
+  tags: ["돈지루", "돼지고기", "매운", "국물"],
+  allergens: ["돼지고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 히야시츄카 (냉라멘)",
+  tags: ["히야시츄카", "냉면", "매운", "시원"],
+  allergens: ["밀", "계란"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "차갑고 시원한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 오차즈케 (명란)",
+  tags: ["오차즈케", "명란", "밥", "매콤"],
+  allergens: ["명란", "생선"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "밥 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰한 규스지 전골",
+  tags: ["소힘줄", "전골", "매콤", "따뜻"],
+  allergens: ["소고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 김치 나베",
+  tags: ["김치", "나베", "퓨전", "돼지고기"],
+  allergens: ["돼지고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "카라이 미소 오뎅 나베",
+  tags: ["오뎅", "어묵", "매운", "미소"],
+  allergens: ["생선", "밀", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "해물 부타 나베 (매콤한 돼지고기 해물 전골)",
+  tags: ["돼지고기", "해물", "전골", "매콤"],
+  allergens: ["돼지고기", "새우", "오징어"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 돼지 돈지루",
+  tags: ["돈지루", "돼지고기", "미소", "매운"],
+  allergens: ["돼지고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매콤한 우삼겹 스키야키",
+  tags: ["스키야키", "소고기", "우삼겹", "매콤"],
+  allergens: ["소고기", "계란", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "얼큰 해물 모츠나베 (곱창 전골)",
+  tags: ["모츠나베", "곱창", "해물", "매콤"],
+  allergens: ["소고기", "대두", "밀"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매콤 버섯 미소시루 (된장국)",
+  tags: ["미소시루", "버섯", "매콤", "가벼운"],
+  allergens: ["대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰한 닭고기 토리 나베",
+  tags: ["닭고기", "토리", "나베", "매콤"],
+  allergens: ["닭고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 타마고 토지 (계란 맑은 국)",
+  tags: ["계란", "맑은", "매콤", "가벼운"],
+  allergens: ["계란", "생선"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 두부 전골 (유도후 나베)",
+  tags: ["두부", "유도후", "전골", "매콤"],
+  allergens: ["대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰한 해산물 짬뽕 (나가사키 짬뽕 매운 버전)",
+  tags: ["짬뽕", "해산물", "매운", "국물"],
+  allergens: ["밀", "새우", "오징어"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "닭 육수 매운 쇼유 라멘",
+  tags: ["라멘", "쇼유", "닭고기", "매운"],
+  allergens: ["밀", "닭고기", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매콤한 해산물 지리",
+  tags: ["지리", "해산물", "매콤", "맑은"],
+  allergens: ["생선", "새우"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 간장 돈코츠 나베",
+  tags: ["돈코츠", "돼지고기", "간장", "매콤"],
+  allergens: ["돼지고기", "밀", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "야채 듬뿍 매운 토마토 나베 (퓨전)",
+  tags: ["토마토", "야채", "나베", "매콤"],
+  allergens: ["토마토"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매콤한 해물 미니 우동",
+  tags: ["우동", "해물", "매콤", "가벼운"],
+  allergens: ["밀", "새우"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "소고기 시오 라멘 (매운 소금 육수)",
+  tags: ["시오라멘", "소고기", "매운", "국물"],
+  allergens: ["밀", "소고기"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 두부 미소 나베",
+  tags: ["두부", "미소", "나베", "매콤"],
+  allergens: ["대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매콤한 해물 순두부 나베 (퓨전)",
+  tags: ["순두부", "해물", "나베", "매콤"],
+  allergens: ["대두", "새우"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 마구로 맑은 국",
+  tags: ["참치", "마구로", "매콤", "맑은"],
+  allergens: ["참치", "생선"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰한 교자 나베 (만두 전골)",
+  tags: ["교자", "만두", "전골", "매운"],
+  allergens: ["밀", "돼지고기"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매운 소고기 카레 스튜",
+  tags: ["소고기", "카레", "스튜", "매콤"],
+  allergens: ["소고기"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매콤한 야채 버섯 미소 나베",
+  tags: ["버섯", "야채", "미소", "매콤"],
+  allergens: ["대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰한 해산물 미소 전골",
+  tags: ["해산물", "전골", "미소", "매운"],
+  allergens: ["새우", "오징어", "대두"],
+  category: "일식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰 해물 칼국수",
+  tags: ["칼국수", "해물", "얼큰", "뜨거운"],
+  allergens: ["밀", "새우", "오징어"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "닭개장 칼국수",
+  tags: ["닭개장", "칼국수", "뜨거운", "닭고기"],
+  allergens: ["밀", "닭고기"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "얼큰 육개장 칼국수",
+  tags: ["육개장", "칼국수", "얼큰", "소고기"],
+  allergens: ["밀", "소고기"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "해물 짬뽕",
+  tags: ["라면", "해물", "매운"],
+  allergens: ["밀", "새우", "오징어"],
+  category: "중식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매콤한 불고기 전골 우동",
+  tags: ["전골", "우동", "불고기", "매콤"],
+  allergens: ["밀", "소고기", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "낙지볶음",
+  tags: ["낙지", "매콤", "볶음"],
+  allergens: ["밀", "낙지"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "밥 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 부대찌개 라면",
+  tags: ["부대찌개", "라면", "매운", "소세지"],
+  allergens: ["밀", "돼지고기", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "돼지 두루치기",
+  tags: ["두루치기", "돼지고기", "소면", "매콤"],
+  allergens: ["밀", "돼지고기", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "밥 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "얼큰 된장 칼국수",
+  tags: ["칼국수", "된장", "매운", "뜨거운"],
+  allergens: ["밀", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "고추장찌개 수제비",
+  tags: ["고추장", "찌개", "수제비", "얼큰"],
+  allergens: ["밀", "돼지고기", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "해물 순두부 라면",
+  tags: ["순두부", "라면", "해물", "매운"],
+  allergens: ["밀", "대두", "새우"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 닭 한 마리 칼국수",
+  tags: ["닭", "칼국수", "매운", "전골"],
+  allergens: ["밀", "닭고기"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "버섯 얼큰 국수 전골",
+  tags: ["국수", "버섯", "전골", "매운"],
+  allergens: ["밀", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "국물 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰 꼬막 비빔국수",
+  tags: ["꼬막", "비빔국수", "매콤", "해산물"],
+  allergens: ["밀", "조개류", "참깨"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 버섯 들깨 칼국수",
+  tags: ["수제비", "버섯", "들깨", "매운"],
+  allergens: ["밀", "참깨"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰한 바지락 칼국수",
+  tags: ["칼국수", "바지락", "해물", "매운"],
+  allergens: ["밀", "조개류"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 어묵 우동",
+  tags: ["어묵", "우동", "매운", "국물"],
+  allergens: ["밀", "생선"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "뼈해장국",
+  tags: ["뼈해장국", "얼큰"],
+  allergens: ["밀", "돼지고기"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "얼큰한 만둣국",
+  tags: ["만두", "만둣국", "매운", "국물"],
+  allergens: ["밀", "돼지고기", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "국물 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "해물 매운 비빔면 (온면)",
+  tags: ["비빔면", "해물", "매운", "온면"],
+  allergens: ["밀", "새우", "조개류"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매콤한 감자옹심이 칼국수",
+  tags: ["감자", "옹심이", "칼국수", "매운"],
+  allergens: ["밀", "감자"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "뜨겁고 얼큰한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "얼큰한 버섯 칼국수",
+  tags: ["칼국수", "버섯", "매콤", "따뜻"],
+  allergens: ["밀", "대두"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매콤 들깨 수제비",
+  tags: ["수제비", "들깨", "매콤", "편안한"],
+  allergens: ["밀", "참깨"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매콤한 바지락 칼국수",
+  tags: ["칼국수", "바지락", "해물", "매콤"],
+  allergens: ["밀", "조개류"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+{
+  title: "매운 닭 한 마리 칼국수",
+  tags: ["닭", "칼국수", "닭고기", "매콤"],
+  allergens: ["밀", "닭고기"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "고기 중심 요리"
+},
+{
+  title: "매콤 감자 옹심이 칼국수",
+  tags: ["옹심이", "감자", "칼국수", "매콤"],
+  allergens: ["밀", "감자"],
+  category: "한식",
+  flavor: "매움",
+  temperature: "따뜻하고 편안한",
+  form: "면 요리",
+  style: "채소·가벼운 식단"
+},
+];
